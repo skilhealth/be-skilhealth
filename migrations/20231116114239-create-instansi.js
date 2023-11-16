@@ -10,18 +10,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nama: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       alamat: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       no_tlp: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       area: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       email: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

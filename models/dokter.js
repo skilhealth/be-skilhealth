@@ -10,11 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Dokter.hasMany(models.Jadwal, { foreignKey: 'dokter_id' });
+      Dokter.belongsTo(models.Spesialis, {foreignKey: "spesialis_id", onDelete: 'CASCADE'});
+      Dokter.belongsTo(models.Instansi, {foreignKey: 'instansi_id' , onDelete: 'CASCADE'});
     }
   }
   Dokter.init({
     nama: DataTypes.STRING,
+    spesialis_id: DataTypes.BIGINT,
+    instansi_id: DataTypes.BIGINT,
     deskripsi: DataTypes.TEXT,
     skd: DataTypes.STRING,
     pengalaman: DataTypes.JSON,

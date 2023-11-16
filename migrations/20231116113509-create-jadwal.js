@@ -9,7 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      dokter_id: {
+        allowNull:false,
+        type: Sequelize.BIGINT
+      },
       date: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       tipe: {
@@ -18,6 +23,7 @@ module.exports = {
         allowNull: false
       },
       keterangan: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       status: {

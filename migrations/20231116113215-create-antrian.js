@@ -9,13 +9,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      user_id: {
+        allowNull: false,
+        type: Sequelize.BIGINT
+      },
+      jadwal_id: {
+        allowNull: false,
+        type: Sequelize.BIGINT
+      },
       status: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       token: {
+        allowNull: false,
         type: Sequelize.BIGINT
       },
       keterangan: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       createdAt: {

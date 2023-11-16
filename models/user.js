@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.belongsTo(models.User_kredensial, { foreignKey: 'kredensial_id', onDelete: 'CASCADE' });
+      User.hasMany(models.Antrian, { foreignKey: 'user_id' });
     }
   }
   User.init({
@@ -21,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     no_tlp: DataTypes.STRING,
+    kredensial_id: DataTypes.BIGINT,
     images: DataTypes.STRING
   }, {
     sequelize,

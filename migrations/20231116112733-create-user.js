@@ -26,6 +26,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      kredensial_id: {
+        allowNull: false,
+        type: Sequelize.BIGINT
+      },
       images: {
         allowNull: false,
         type: Sequelize.STRING

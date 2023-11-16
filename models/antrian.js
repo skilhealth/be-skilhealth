@@ -10,10 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Antrian.belongsTo(models.User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+      Antrian.belongsTo(models.Jadwal, { foreignKey: 'jadwal_id' });
     }
   }
   Antrian.init({
+    user_id:DataTypes.BIGINT,
+    jadwal_id:DataTypes.BIGINT,
     status: DataTypes.BOOLEAN,
     token: DataTypes.BIGINT,
     keterangan: DataTypes.TEXT

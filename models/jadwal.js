@@ -10,10 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Jadwal.hasMany(models.Antrian, { foreignKey: 'jadwal_id' });
+      Jadwal.belongsTo(models.Dokter, { foreignKey: 'dokter_id' });
     }
   }
   Jadwal.init({
+    dokter_id: DataTypes.BIGINT,
     date: DataTypes.DATE,
     tipe: DataTypes.ENUM('reguler','daring','homecare'),
     keterangan: DataTypes.TEXT,
