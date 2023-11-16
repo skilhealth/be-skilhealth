@@ -40,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Jadwals');
+    await queryInterface.dropTable('jadwal');
   }
 };
