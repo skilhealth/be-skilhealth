@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Dokter.hasMany(models.Jadwal, { foreignKey: 'dokter_id' });
+      Dokter.hasMany(models.Forum, {foreignKey: 'dokter_id'})
       Dokter.belongsTo(models.Spesialis, {foreignKey: "spesialis_id", onDelete: 'CASCADE'});
       Dokter.belongsTo(models.Instansi, {foreignKey: 'instansi_id' , onDelete: 'CASCADE'});
     }
@@ -29,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Dokter',
+    freezeTableName: true
   });
   return Dokter;
 };

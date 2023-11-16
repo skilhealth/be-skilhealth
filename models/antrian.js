@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Antrian',
+    freezeTableName: true
   });
   return Antrian;
 };

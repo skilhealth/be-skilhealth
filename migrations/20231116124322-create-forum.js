@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('antrian', {
+    await queryInterface.createTable('Forums', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,23 +10,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        allowNull: false,
         type: Sequelize.BIGINT
       },
-      jadwal_id: {
-        allowNull: false,
+      dokter_id: {
         type: Sequelize.BIGINT
       },
-      status: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN
+      judul: {
+        type: Sequelize.STRING
       },
-      token: {
-        allowNull: false,
-        type: Sequelize.BIGINT
+      pertanyaan: {
+        type: Sequelize.TEXT
       },
-      keterangan: {
-        allowNull: false,
+      jawaban: {
         type: Sequelize.TEXT
       },
       createdAt: {
@@ -40,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Antrians');
+    await queryInterface.dropTable('Forums');
   }
 };

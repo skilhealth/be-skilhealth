@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.belongsTo(models.User_kredensial, { foreignKey: 'kredensial_id', onDelete: 'CASCADE' });
       User.hasMany(models.Antrian, { foreignKey: 'user_id' });
+      User.hasMany(models.Forum, {foreignKey: 'user_id'})
     }
   }
   User.init({
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    freezeTableName: true
   });
   return User;
 };
