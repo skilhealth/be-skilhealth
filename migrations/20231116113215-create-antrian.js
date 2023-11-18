@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BIGINT
       },
+      dokter_id: {
+        allowNull: false,
+        type: Sequelize.BIGINT
+      },
       status: {
         allowNull: false,
         type: Sequelize.BOOLEAN

@@ -1,4 +1,4 @@
-const { Antrian } = require("../models")
+const { Antrian, User, Dokter, Instansi, Spesialis } = require("../models")
 
 module.exports = {
     addBooking: async (req, res) => {
@@ -31,9 +31,46 @@ module.exports = {
             })
         }
     },
-    addBosoking: async (req, res) => {
+    getBookingByUserId: async (req, res) => {
         try {
-
+            const id = req.query.user 
+            const antrian = await Antrian.findAll({
+                where:{
+                    "$User.id$":id
+                },
+                attributes: ['id', 'status'],
+                include: [{
+                    model:User,
+                    required:true,
+                    attributes:['id']
+                },
+                {
+                    model: Jadwal,
+                    required: true,
+                    attributes: ["date", "tipe"]
+                }, {
+                    model: Dokter,
+                    required: true,
+                    attributes: ["id","nama","images"],
+                    include: [{
+                        model: Spesialis,
+                        required: true,
+                        attributes: ['nama']
+                    }, {
+                        model: Instansi,
+                        required: true,
+                        attributes: ['nama']
+                    }]
+                }]
+            })
+            if (antrian.length === 0)
+                return res.status(200).json({
+                    message: "Antrian Kosong"
+                })
+            res.status(200).json({
+                message: "Menampilkan Antrian",
+                data: antrian
+            })
         } catch (err) {
             console.log(err)
             res.status(500).json({
