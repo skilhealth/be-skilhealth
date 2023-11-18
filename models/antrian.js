@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id:DataTypes.BIGINT,
     jadwal_id:DataTypes.BIGINT,
     status: DataTypes.BOOLEAN,
-    token: DataTypes.BIGINT,
+    token: DataTypes.STRING,
     keterangan: DataTypes.TEXT
   }, {
     sequelize,

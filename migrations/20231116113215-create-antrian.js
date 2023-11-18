@@ -23,7 +23,7 @@ module.exports = {
       },
       token: {
         allowNull: false,
-        type: Sequelize.BIGINT
+        type: Sequelize.STRING
       },
       keterangan: {
         allowNull: false,
