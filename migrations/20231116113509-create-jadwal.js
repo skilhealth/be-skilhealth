@@ -29,6 +29,9 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN
       },
+      harga:{
+        type: Sequelize.BIGINT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

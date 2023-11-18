@@ -1,5 +1,5 @@
 const express = require("express")
-const { searchDoctor, addDoctor } = require("../controllers/doctor-controller")
+const { searchDoctor, addDoctor, DokterById } = require("../controllers/doctor-controller")
 const route = express.Router()
 
 route.get("/",(req,res)=>{
@@ -9,4 +9,5 @@ route.get("/",(req,res)=>{
 })
 route.post("/search",searchDoctor)
 route.post("/add",addDoctor)
+route.get("/:id",DokterById)
 module.exports = route

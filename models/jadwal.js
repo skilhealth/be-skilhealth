@@ -17,9 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   Jadwal.init({
     dokter_id: DataTypes.BIGINT,
     date: DataTypes.DATE,
-    tipe: DataTypes.ENUM('reguler','daring','homecare'),
+    tipe: DataTypes.ENUM('reguler', 'daring', 'homecare'),
     keterangan: DataTypes.TEXT,
-    status: DataTypes.BOOLEAN
+    status: DataTypes.BOOLEAN,
+    harga: DataTypes.BIGINT,
   }, {
     sequelize,
     modelName: 'Jadwal',

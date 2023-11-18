@@ -5,20 +5,18 @@ module.exports = {
         try {
             const data = req.body
             let { Lanjutan } = req.body
-            if (data.nama !==undefined) {
+            if (data.nama !== undefined) {
                 Lanjutan = {
                     ...Lanjutan,
                     "$Dokter.nama$": { [Op.like]: `%${data.nama}%` }
                 }
             }
-            if (data.hari!==undefined) {
+            if (data.hari !== undefined) {
                 Lanjutan = {
                     ...(data.hari !== "" && { date: Sequelize.literal(`DAYNAME(date) = '${data.hari}'`) }),
                     ...Lanjutan,
                 }
             }
-
-            console.log(Lanjutan)
             const doctors = await Jadwal.findAll({
                 attributes: [
                     "dokter_id"],
@@ -26,7 +24,7 @@ module.exports = {
                 include: [{
                     model: Dokter,
                     required: true,
-                    attributes: ['nama', 'id', 'status'],
+                    attributes: ['nama', 'id', 'status', 'images'],
                     include: [{
                         model: Instansi,
                         required: true,
@@ -45,7 +43,7 @@ module.exports = {
                 })
             res.status(200).json({
                 message: "Dokter Berhasil ditemukan",
-                todos: doctors
+                data: doctors
             })
         } catch (err) {
             console.log(err)
@@ -80,9 +78,36 @@ module.exports = {
             })
         }
     },
-    searcshDoctor: async (req, res) => {
+    DokterById: async (req, res) => {
         try {
-
+            const { id } = req.params
+            const doctors = await Dokter.findByPk((id), {
+                attributes: ['nama', 'id', 'status', 'deskripsi', 'skd', 'pengalaman', 'images'],
+                include: [{
+                    model: Instansi,
+                    required: true,
+                    attributes: ['nama']
+                }, {
+                    model: Spesialis,
+                    as: "Spesiali",
+                    required: true,
+                    attributes: ['nama']
+                },
+                {
+                    model: Jadwal,
+                    required: true,
+                    attributes: ['date', 'tipe', 'status'],
+                }
+                ]
+            })
+            if (!doctors)
+                return res.status(200).json({
+                    message: "Dokter Tidak Ditemukan"
+                })
+            res.status(200).json({
+                message: "Dokter Berhasil ditemukan",
+                data: doctors
+            })
         } catch (err) {
             console.log(err)
             res.status(500).json({

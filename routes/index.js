@@ -12,10 +12,10 @@ route.get("/", (req, res) => {
 route.use("/doctors", doktorRoutes)
 route.post("/rs", async (req, res) => {
     const data = await Instansi.create({
-        nama: "Skilvul Hospital Jakarta",
-        alamat: "Jakarta",
+        nama: "Skilvul Hospital Surabaya",
+        alamat: "Surabaya",
         no_tlp: "0123",
-        area: "Jabodetabek",
+        area: "Jawa Timur",
         email: "@gmail.com"
     })
     res.json({
@@ -25,7 +25,7 @@ route.post("/rs", async (req, res) => {
 })
 route.post("/sp", async (req, res) => {
     const data = await Spesialis.create({
-        nama: "Ahli Kandungan",
+        nama: "Ahli THT",
         keterangan: "-",
     })
     res.json({
@@ -35,11 +35,12 @@ route.post("/sp", async (req, res) => {
 })
 route.post("/jd", async (req, res) => {
     const data = await Jadwal.create({
-        dokter_id: 2,
-        date:"2023-11-17",
-        tipe: "homecare",
+        dokter_id: 5,
+        date:"2023-11-25",
+        tipe: "daring",
         keterangan:"-",
-        status: false
+        status: true,
+        harga:46000
     })
     res.json({
         message: "Berhasil",
