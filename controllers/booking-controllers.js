@@ -83,15 +83,15 @@ module.exports = {
         try {
             const { id } = req.params
             const antrian = await Antrian.findByPk((id), {
-                attributes: ['status', 'token', 'keterangan','status'],
+                attributes: ['id','status'],
                 include: [{
                     model: Dokter,
                     required: true,
-                    attributes: ['nama', 'id', 'status', 'deskripsi', 'skd', 'pengalaman', 'images'],
-                },{
-                    model:Jadwal,
-                    required:true,
-                    attributes:['date','tipe','status']
+                    attributes: ['nama', 'status', 'deskripsi', 'skd', 'pengalaman', 'images'],
+                }, {
+                    model: Jadwal,
+                    required: true,
+                    attributes: ['date', 'tipe', 'status']
                 }]
             })
             if (!antrian)
