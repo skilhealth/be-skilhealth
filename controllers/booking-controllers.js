@@ -1,4 +1,4 @@
-const { Antrian, User, Dokter, Instansi, Spesialis } = require("../models")
+const { Antrian, User, Dokter, Instansi, Spesialis, Jadwal } = require("../models")
 
 module.exports = {
     addBooking: async (req, res) => {
@@ -33,16 +33,17 @@ module.exports = {
     },
     getBookingByUserId: async (req, res) => {
         try {
-            const id = req.query.user 
+            const id = req.query.user
+            console.log(id)
             const antrian = await Antrian.findAll({
-                where:{
-                    "$User.id$":id
+                where: {
+                    "$User.id$": id
                 },
                 attributes: ['id', 'status'],
                 include: [{
-                    model:User,
-                    required:true,
-                    attributes:['id']
+                    model: User,
+                    required: true,
+                    attributes: ['id']
                 },
                 {
                     model: Jadwal,
@@ -51,7 +52,7 @@ module.exports = {
                 }, {
                     model: Dokter,
                     required: true,
-                    attributes: ["id","nama","images"],
+                    attributes: ["id", "nama", "images"],
                     include: [{
                         model: Spesialis,
                         required: true,
@@ -78,9 +79,29 @@ module.exports = {
             })
         }
     },
-    raddBooking: async (req, res) => {
+    getBookingById: async (req, res) => {
         try {
-
+            const { id } = req.params
+            const antrian = await Antrian.findByPk((id), {
+                attributes: ['status', 'token', 'keterangan','status'],
+                include: [{
+                    model: Dokter,
+                    required: true,
+                    attributes: ['nama', 'id', 'status', 'deskripsi', 'skd', 'pengalaman', 'images'],
+                },{
+                    model:Jadwal,
+                    required:true,
+                    attributes:['date','tipe','status']
+                }]
+            })
+            if (!antrian)
+                return res.status(200).json({
+                    message: "Antrian Tidak ditemukan"
+                })
+            res.status(200).json({
+                message: "Antrian Berhasil ditemukan",
+                data: antrian
+            })
         } catch (err) {
             console.log(err)
             res.status(500).json({
