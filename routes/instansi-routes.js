@@ -2,26 +2,26 @@ const express = require("express")
 const route = express.Router();
 
 const {
-    getAllHospitals,
-    getHospitalsById,
-    createHospitals,
-    updateHospitals,
-    deleteHospitals,
-    searchHospitalByAlamat,
-    searchHospitalByName,
-    searchHospitalByJarak,
-    searchHospitalByArea
+    getAllInstansi,
+    getInstansiById,
+    createInstansi,
+    updateInstansi,
+    deleteInstansi,
+    searchInstansiByAlamat,
+    searchInstansiByName,
+    searchInstansiByJarak,
+    searchInstansiByArea
 } = require("../controllers/instansi-controller");
 
-route.get("/" ,getAllHospitals);
-route.get("/:id",getHospitalsById);
-route.post("/" ,createHospitals);
-route.put("/" ,updateHospitals);
-route.delete("/" ,deleteHospitals);
-route.post("/:alamat" ,searchHospitalByAlamat);
-route.post("/:name" ,searchHospitalByName);
-route.post("/:jarak" ,searchHospitalByJarak);
-route.post("/:area" ,searchHospitalByArea);
+route.get("/" ,getAllInstansi);
+route.get("/:id",getInstansiById);
+route.post("/" ,createInstansi);
+route.put("/" ,updateInstansi);
+route.delete("/" ,deleteInstansi);
+route.post("/:alamat" ,searchInstansiByAlamat);
+route.post("/:name" ,searchInstansiByName);
+route.post("/:jarak" ,searchInstansiByJarak);
+route.post("/:area" ,searchInstansiByArea);
 
 module.exports = route;
 
