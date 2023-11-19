@@ -31,7 +31,7 @@ module.exports = {
       },
       image: {
         allowNull: false,
-        type: Sequelize.VARCHAR
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     no_tlp: DataTypes.STRING,
     area: DataTypes.STRING,
     email: DataTypes.STRING,
-    image: DataTypes.VARCHAR
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Instansi',
