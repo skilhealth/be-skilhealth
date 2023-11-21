@@ -30,8 +30,25 @@ module.exports = {
     },
 
     createInstansi: async (req, res) => {
-     
-     },
+      try {
+        const {nama, alamat, no_tlpn, area, email, image} = req.body;
+
+        const newInstansi = await Instansi.create({
+          nama,
+          alamat,
+          no_tlpn,
+          area,
+          email,
+          image
+        });
+
+        res.status(201).json({message: "Intansi berhasil ditambahkan", instansi: newInstansi})
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({message: "Gagal membuat instansi baru"})
+      }
+
+      },
 
      updateInstansi: async (req, res) => {
      
