@@ -26,7 +26,7 @@ module.exports = {
 
     createInstansi:  (req, res) => {
       if(req.files === null) return res.status(400).json({message: "No File Uploaded"});
-      const {nama, alamat, no_tlpn, area, email} = req.body.
+      const {nama, alamat, no_tlpn, area, email} = req.body
       const file = req.files.file;
       const fileSize = file.data.length;
       const ext = path.extname(file.name);
