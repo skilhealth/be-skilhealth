@@ -29,9 +29,30 @@ module.exports = {
 
     },
 
+    createInstansi: async (req, res) => {
+     
+     },
 
+     updateInstansi: async (req, res) => {
+     
+     },
 
+     deleteInstansi: async (req, res) => {
+     
+     },
 
+     searchInstansiByAlamat: async (req, res) => {
+     
+     },
+     searchInstansiByName: async (req, res) => {
+     
+     },
+     searchInstansiByJarak: async (req, res) => {
+     
+     },
+     searchInstansiByArea: async (req, res) => {
+     
+     }
 }
 
     
