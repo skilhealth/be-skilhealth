@@ -31,7 +31,7 @@ module.exports = {
 
     createInstansi: async (req, res) => {
       try {
-        const {nama, alamat, no_tlpn, area, email, image} = req.body;
+        const {nama, alamat, no_tlpn, area, email, image, url} = req.body;
 
         const newInstansi = await Instansi.create({
           nama,
@@ -39,7 +39,8 @@ module.exports = {
           no_tlpn,
           area,
           email,
-          image
+          image,
+          url
         });
 
         res.status(201).json({message: "Intansi berhasil ditambahkan", instansi: newInstansi})
