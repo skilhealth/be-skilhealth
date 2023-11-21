@@ -9,7 +9,7 @@ route.get ("/", (req, res) => {
     })
 })
 
-route.use("/intansi", instansiRoute)
+route.use("/instansi", instansiRoute)
 
 module.exports = route
 

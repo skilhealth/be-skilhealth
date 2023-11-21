@@ -1,55 +1,53 @@
-const Instansi = require("../models/instansi")
+const {Instansi} = require("../models")
+const path = require('path');
 
 module.exports = {
-   getAllInstansi: async (req, res) => {
-    const instansi = await Instansi.findAll()
-
-    res.json({
-        message: " berhasil mendapatkan data Instansi",
-        data: instansi
-    })
+   getInstansi: async (req, res) => {
+    try {
+      const response = await Instansi.findAll();
+      res.json(response);
+    } catch (error) {
+      console.log(error.message);
+    }
    },
 
    getInstansiById: async (req, res) => {
     try {
-          // Ambil ID instansi dari parameter rute
-          const instansiId = req.params.id;
-
-          // cari instansi berdasarkan ID
-          const instansi = await Instansi.finById(instansiId);
-
-           // Periksa apakah instansi ditemukan
-         if (!instansi) {
-        return res.status(404).json({ message: 'instansi not found' });
-      }
-     }catch (error) {
-        console.error('Error getting instansi by ID:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-      }
-
+      const response = await Instansi.findOne({
+        where: {
+          id : req.params.id
+        }
+      });
+      res.json(response);
+    } catch (error) {
+      console.log(error.message);
+    }
     },
 
-    createInstansi: async (req, res) => {
-      try {
-        const {nama, alamat, no_tlpn, area, email, image, url} = req.body;
+    createInstansi:  (req, res) => {
+      if(req.files === null) return res.status(400).json({message: "No File Uploaded"});
+      const {nama, alamat, no_tlpn, area, email} = req.body.
+      const file = req.files.file;
+      const fileSize = file.data.length;
+      const ext = path.extname(file.name);
+      const fileName = file.md5 + ext;
+      const url = `${req.protocol}: //${req.get("host")}//images/${fileName}`;
+      const allowedType = ['.png', '.jpg', '.jpeg'];
 
-        const newInstansi = await Instansi.create({
-          nama,
-          alamat,
-          no_tlpn,
-          area,
-          email,
-          image,
-          url
-        });
+      if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({message: "Invalid Images"});
+      if(fileSize > 5000000) return res.status(422).json({message: "Image must be less than 5 MB"});
 
-        res.status(201).json({message: "Intansi berhasil ditambahkan", instansi: newInstansi})
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({message: "Gagal membuat instansi baru"})
-      }
+      file.mv(`./public/images/${fileName}`, async(err) => {
+        if (err) return res.status(500).json({message: err.message});
+        try {
+          await Instansi.create({nama, alamat,no_tlpn,area,email, image:fileName, url: url});
+          res.status(201).json({message: "Instansi berhasil ditambahkan"});
+        } catch (error) {
+          console.log(err.message);
+        }
+      })
 
-      },
+    },
 
      updateInstansi: async (req, res) => {
      
@@ -71,6 +69,4 @@ module.exports = {
      searchInstansiByArea: async (req, res) => {
      
      }
-}
-
-    
+}   

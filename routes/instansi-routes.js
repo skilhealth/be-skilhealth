@@ -2,7 +2,7 @@ const express = require("express")
 const route = express.Router();
 
 const {
-    getAllInstansi,
+    getInstansi,
     getInstansiById,
     getInstansiBy,
     createInstansi,
@@ -14,7 +14,7 @@ const {
     searchInstansiByArea
 } = require("../controllers/instansi-controller");
 
-route.get("/" ,getAllInstansi);
+route.get("/" ,getInstansi);
 route.get("/:id",getInstansiById);
 route.post("/" ,createInstansi);
 route.put("/:id" ,updateInstansi);
