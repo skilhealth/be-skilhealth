@@ -1,4 +1,4 @@
-const {User_kredensial} = require('../models/user_kredensial')
+const {User_kredensial} = require('../models')
 const bcrypt = require('bcrypt')
 
 
@@ -6,19 +6,18 @@ module.exports = {
     Login: async (req, res) => {
         const userKredensial = await User_kredensial.findOne({
             where: {
-              email: req.body.email
+              email : req.body.email
             }
           });
           if(!userKredensial) return res.status(404).json({message: "User Tidak ditemukan"});
-          const match = await bcrypt.compare(req.body.password, user[0].password);
+          const match = await bcrypt.compare(req.body.password, userKredensial.password);
           if (!match) return res.status(400).json({message: "Password Salah"});
-          req.session.userKredensialId =  userKredensial.id;
+         // req.session.userKredensialId =  userKredensial.id;
          const id = userKredensial.id;
          const username = userKredensial.username;
          const email = userKredensial.email;
          const role = userKredensial.role;
           res.status(200).json(id, username, email, role);
-          console.log(error.message);
     },
 
     Me: async (req, res) => {
@@ -34,6 +33,7 @@ module.exports = {
           if(!userKredensial) return res.status(404).json({message: "User Tidak ditemukan"});
           res.status(200).json(userKredensial)
     },
+
 
     Logout: (req, res) => {
         req.session.destroy((err) => {
