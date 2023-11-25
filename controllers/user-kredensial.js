@@ -1,8 +1,13 @@
-const user_kredensial = require('../models/user_kredensial')
+const {Users} = require('../models/user_kredensial')
 
 module.exports = {
     getAllUserKredensial: async (req,res) => {
-       
+       try {
+        const users = await Users.findAll();
+        res.json(users);
+       } catch (error) {
+         console.log(error);
+       }
     },
 
     getUserKredensialById: async (req,res) => {

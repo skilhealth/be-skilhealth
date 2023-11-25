@@ -12,7 +12,7 @@ route.get ("/", (req, res) => {
 
 route.use("/user", userRoute)
 
-route.use("/userKredensial", userKredensial)
+route.use("/users", userKredensial)
 
 
 
