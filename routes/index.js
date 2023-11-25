@@ -11,6 +11,7 @@ route.get ("/", (req, res) => {
 
 route.use("/instansi", instansiRoute)
 
+
 module.exports = route
 
 

@@ -1,6 +1,5 @@
 const {Instansi} = require("../models")
-const path = require('path');
-
+const model = require("../models")
 
 module.exports = {
    getInstansi: async (req, res) => {
@@ -25,38 +24,32 @@ module.exports = {
     }
     },
 
-    createInstansi: (req, res) => {
-      if(req.files === null) return res.status(400).json({msg: "No File Uploaded"});
-      const nama = req.body.title;
-      const alamat = req.body.alamat;
-      const no_tlp = req.body.no_tlpn;
-      const area = req.body.area;
-      const file = req.files.file;
-      const filesize = file.data.length;
-      const ext = path.extname(file.name);
-      const fileName = file.md5 + ext;
-      const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
-      const allowedType = ['.png','.jpg','.jpeg'];
-  
-      if(!allowedType.includes(ext.toLowerCase())) return res.status(422).json({msg: "Invalid Images"});
-      if(filesize > 5000000) return res.status(422).json({msg: "Image must be less than 5 MB"});
-  
-      file.mv(`./public/images/${fileName}`, async(err)=>{
-          if(err) return res.status(500).json({msg: err.message});
-          try {
-              await Instansi.create({
-                name: nama, 
-                alamat: alamat,
-                no_tlp: no_tlp,
-                area: area,
-                image: fileName, 
-                url: url
-              });
-              res.status(201).json({msg: "Instansi Created Successfuly"});
-          } catch (error) {
-              console.log(error.message);
-          }
-      })
+    createInstansi: async (req, res) => {
+      try {
+        let instansi = await model.Instansi.create({
+          nama: req.body.nama,
+          alamat: req.body.alamat,
+          no_tlp: req.body.no_tlp,
+          area: req.body.area,
+          email: req.body.email,
+          image: req.file.path
+        })
+        res.status(201).json({
+          message: "Berhasil Membuat Instansi",
+          data: instansi
+        })
+      } catch (error) {
+        res.status(404).json({
+          message:error.message
+        })
+      }
+        //try {
+       //   const instansiData = req.body;
+         // const instansi = await Instansi.create(instansiData);
+          //res.status(200).json(instansi);
+      //} catch (err) {
+        //  res.status(400).json({ message: err.message });
+      //}
     },
 
      updateInstansi: async (req, res) => {
