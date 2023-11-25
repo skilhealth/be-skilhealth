@@ -2,6 +2,7 @@ const express = require("express")
 const route = express.Router()
 
 const userRoute = require('./user-routes');
+const userKredensial = require('./user-kredensial-route');
 
 route.get ("/", (req, res) => {
     res.json({
@@ -10,6 +11,9 @@ route.get ("/", (req, res) => {
 })
 
 route.use("/user", userRoute)
+
+route.use("/userKredensial", userKredensial)
+
 
 
 module.exports = route
