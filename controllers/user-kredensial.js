@@ -1,6 +1,6 @@
 const {User_kredensial, Otp} = require('../models')
 const bcrypt = require('bcrypt');
-const { Sequelize, Op, where } = require("sequelize");
+
 
 module.exports = {
     getUser: async (req,res) => {
