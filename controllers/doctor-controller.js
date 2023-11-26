@@ -82,7 +82,7 @@ module.exports = {
         try {
             const { id } = req.params
             const doctors = await Dokter.findByPk((id), {
-                attributes: ['nama', 'id', 'status', 'deskripsi', 'skd', 'pengalaman', 'images'],
+                attributes: ['nama', 'id', 'status', 'deskripsi', 'skd', 'pengalaman', 'images', 'pendidikan'],
                 include: [{
                     model: Instansi,
                     required: true,
@@ -95,7 +95,7 @@ module.exports = {
                 },
                 {
                     model: Jadwal,
-                    required: true,
+                    required: false,
                     attributes: ['date', 'tipe', 'status'],
                 }
                 ]
@@ -115,9 +115,29 @@ module.exports = {
             })
         }
     },
-    seasrchDoctor: async (req, res) => {
+    GetAllDoctor: async (req, res) => {
         try {
-
+            const doctors = await Dokter.findAll({
+                attributes: ['id', 'nama', 'images', 'status'],
+                include: [{
+                    model: Instansi,
+                    required: true,
+                    attributes: ['nama']
+                }, {
+                    model: Spesialis,
+                    as: "Spesiali",
+                    required: true,
+                    attributes: ['nama']
+                },]
+            })
+            if (!doctors)
+                return res.status(200).json({
+                    message: "Tidak ada data Dokter"
+                })
+            res.status(200).json({
+                message: "Dokter Berhasil ditemukan",
+                data: doctors
+            })
         } catch (err) {
             console.log(err)
             res.status(500).json({

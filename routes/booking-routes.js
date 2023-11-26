@@ -2,11 +2,11 @@ const express = require("express")
 const { addBooking, getBookingByUserId, getBookingById, editBooking, refundBooking } = require("../controllers/booking-controllers")
 const route = express.Router()
 
-route.post("/",addBooking)
-route.get("/",getBookingByUserId)
-route.get("/:id",getBookingById)
-route.patch("/:id/edit",editBooking)
-route.delete("/:id/edit",refundBooking)
+route.post("/",addBooking) //nambah booking yang ada di halaman detailpage
+route.get("/",getBookingByUserId) // buat nampilin list booking yang dibuat pasien dihalaman list-booking dan diurutkan berdasarkan waktu terdekat dan status blum mulai
+route.get("/:id",getBookingById) // buat nampilin salah satu detail booking yang dipesan pengguna
+route.patch("/:id/edit",editBooking)  // buat edit janji temu ad di halaman editbooking
+route.delete("/:id/edit",refundBooking) // buat delet booking ada di halaman refund booking
 
 
 module.exports = route

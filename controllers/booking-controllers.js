@@ -17,7 +17,8 @@ module.exports = {
             const antrian = Antrian.create({
                 user_id: data.user_id,
                 jadwal_id: data.jadwal_id,
-                status: false,
+                doctor_id: data.doctor_id,
+                status: true,
                 token: generateToken(6),
                 keterangan: data.keterangan
             })
@@ -38,19 +39,20 @@ module.exports = {
             console.log(id)
             const antrian = await Antrian.findAll({
                 where: {
-                    "$User.id$": id
+                    "user_id": id
                 },
                 attributes: ['id', 'status'],
                 include: [{
                     model: User,
-                    required: true,
+                    // required: true,
                     attributes: ['id']
                 },
                 {
                     model: Jadwal,
                     required: true,
                     attributes: ["date", "tipe"]
-                }, {
+                },
+                {
                     model: Dokter,
                     required: true,
                     attributes: ["id", "nama", "images"],
@@ -63,7 +65,8 @@ module.exports = {
                         required: true,
                         attributes: ['nama']
                     }]
-                }]
+                }],
+                order: [['status','ASC'],[Antrian.associations.Jadwal,'date','ASC']] //false berarti blom mulai
             })
             if (antrian.length === 0)
                 return res.status(200).json({
@@ -139,9 +142,9 @@ module.exports = {
     editBooking: async (req, res) => {
         try {
             const { id } = req.params
-            const { jadwalId } = req.body
+            const { jadwal_id } = req.body
             await Antrian.update({
-                jadwal_id: jadwalId
+                jadwal_id: jadwal_id
             }, {
                 where: {
                     id: id

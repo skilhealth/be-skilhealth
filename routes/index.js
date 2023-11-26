@@ -14,10 +14,10 @@ route.use("/doctors", doktorRoutes)
 route.use("/bookings", bookingRoutes)
 route.post("/rs", async (req, res) => {
     const data = await Instansi.create({
-        nama: "Skilvul Hospital Surabaya",
-        alamat: "Surabaya",
+        nama: "Skilvul Hospital Jakarta",
+        alamat: "Jakarta",
         no_tlp: "0123",
-        area: "Jawa Timur",
+        area: "Jabodetabek",
         email: "@gmail.com"
     })
     res.json({
@@ -27,7 +27,7 @@ route.post("/rs", async (req, res) => {
 })
 route.post("/sp", async (req, res) => {
     const data = await Spesialis.create({
-        nama: "Ahli THT",
+        nama: "Ahli Jantung",
         keterangan: "-",
     })
     res.json({
@@ -37,9 +37,9 @@ route.post("/sp", async (req, res) => {
 })
 route.post("/jd", async (req, res) => {
     const data = await Jadwal.create({
-        dokter_id: 5,
-        date:"2023-11-25",
-        tipe: "daring",
+        dokter_id: 2,
+        date:"2023-11-24",
+        tipe: "reguler",
         keterangan:"-",
         status: true,
         harga:46000

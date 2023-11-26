@@ -1,5 +1,5 @@
 const express = require("express")
-const { searchDoctor, addDoctor, DokterById } = require("../controllers/doctor-controller")
+const { searchDoctor, addDoctor, DokterById, GetAllDoctor } = require("../controllers/doctor-controller")
 const route = express.Router()
 
 route.get("/",(req,res)=>{
@@ -7,7 +7,8 @@ route.get("/",(req,res)=>{
         message:"ada di endpoint doctors"
     })
 })
-route.post("/search",searchDoctor)
-route.post("/add",addDoctor)
-route.get("/:id",DokterById)
+route.post("/search",searchDoctor)//Pencarian Dokter Mobile
+route.post("/add",addDoctor) //gimik buat nambahin data nanti diapus lagi
+route.get("/:id",DokterById) // buat detail dotor page
+route.get("/",GetAllDoctor) // buat nampilin semua dokter
 module.exports = route
