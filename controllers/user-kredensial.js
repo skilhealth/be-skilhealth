@@ -1,6 +1,6 @@
-const {User_kredensial} = require('../models')
-const bcrypt = require('bcrypt')
-
+const {User_kredensial, Otp} = require('../models')
+const bcrypt = require('bcrypt');
+const { Sequelize, Op, where } = require("sequelize");
 
 module.exports = {
     getUser: async (req,res) => {
@@ -98,5 +98,40 @@ module.exports = {
              } catch (error) {
               res.status(400).json({message: error.message})
              }
+    },
+    emailSend: async (req, res) => {
+      try {
+        let data = await User_kredensial.findOne({
+          where: {
+            email: req.body.email
+          }
+        });
+    
+        const responseType = {};
+    
+        if (data) {
+          let otpcode = Math.floor(Math.random() * 10000) + 1;
+    
+          // Simpan data OTP ke dalam database
+          let otpResponse = await Otp.create({
+            email: req.body.email,
+            code: otpcode,
+            expireIn: new Date(new Date().getTime() + 300 * 1000) // Contoh 5 menit
+          });
+    
+          responseType.statusText = 'Success';
+          responseType.message = 'Periksa email Anda untuk kode OTP.';
+        } else {
+          responseType.statusText = 'Error';
+          responseType.message = 'Email tidak ditemukan.';
+        }
+    
+        res.status(200).json(responseType);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    },
+    changePassword: async (req, res) => {
+
     }
 }
