@@ -1,4 +1,4 @@
-const {User_kredensial, Otp} = require('../models')
+const {User_kredensial, otp} = require('../models')
 const bcrypt = require('bcrypt');
 
 
@@ -100,38 +100,28 @@ module.exports = {
              }
     },
     emailSend: async (req, res) => {
-      try {
-        let data = await User_kredensial.findOne({
-          where: {
-            email: req.body.email
-          }
-        });
-    
-        const responseType = {};
-    
-        if (data) {
-          let otpcode = Math.floor(Math.random() * 10000) + 1;
-    
-          // Simpan data OTP ke dalam database
-          let otpResponse = await Otp.create({
-            email: req.body.email,
-            code: otpcode,
-            expireIn: new Date(new Date().getTime() + 300 * 1000) // Contoh 5 menit
-          });
-    
-          responseType.statusText = 'Success';
-          responseType.message = 'Periksa email Anda untuk kode OTP.';
-        } else {
-          responseType.statusText = 'Error';
-          responseType.message = 'Email tidak ditemukan.';
-        }
-    
-        res.status(200).json(responseType);
-      } catch (error) {
-        res.status(500).json({ error: error.message });
+      let data = await User_kredensial.findOne({
+        email: req.body.email
+      });
+      console.log(data)
+      const responseType = {};
+      if(data){
+        let otpcode = Math.floor((Math.random()*10000)+1 );
+        let otpData = new otp({
+          email: req.body.email,
+          code: otpcode,
+          expireIn: new Date().getTime() + 300*1000
+        })
+        let otpResponse = await otpData.save();
+        responseType.statusText = 'Succes'
+        responseType.message = 'Periksa email Anda untuk kode OTP';
+      } else {
+        responseType.statusText = 'error'
+        responseType.message = 'Email id tidak ada';
       }
+      res.status(200).json(responseType);
     },
     changePassword: async (req, res) => {
-
+      res.status(200).json("ok");
     }
 }
