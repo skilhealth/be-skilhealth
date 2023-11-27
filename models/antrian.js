@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       Antrian.belongsTo(models.User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
       Antrian.belongsTo(models.Jadwal, { foreignKey: 'jadwal_id' });
       Antrian.belongsTo(models.Dokter, { foreignKey: 'dokter_id' });
+      Antrian.hasOne(models.ujilab, { foreignKey: 'antrian_id'});
+
     }
   }
   Antrian.init({

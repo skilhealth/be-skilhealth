@@ -1,5 +1,5 @@
 const express = require("express")
-const { searchDoctor, addDoctor, DokterById, GetAllDoctor } = require("../controllers/doctor-controller")
+const {} = require("../controllers/ujilab-controllers")
 const route = express.Router()
 
 route.post("/search",searchDoctor)//Pencarian Dokter Mobile

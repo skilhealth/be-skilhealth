@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Dokter.hasMany(models.Antrian, { foreignKey: 'dokter_id' });
+      Dokter.hasMany(models.ujilab, { foreignKey: 'dokter_id' });
       Dokter.hasMany(models.Jadwal, { foreignKey: 'dokter_id' });
       Dokter.hasMany(models.Forum, {foreignKey: 'dokter_id'})
       Dokter.belongsTo(models.Spesialis, {foreignKey: "spesialis_id", onDelete: 'CASCADE'});

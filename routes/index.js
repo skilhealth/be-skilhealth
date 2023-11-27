@@ -2,6 +2,7 @@ const express = require("express")
 const route = express.Router()
 const doktorRoutes = require("./doctor-routes")
 const bookingRoutes = require("./booking-routes")
+const ujilabRoutes = require("./ujilab-routes")
 const { Instansi, Spesialis, Jadwal } = require("../models")
 const { DATE } = require("sequelize")
 
@@ -12,6 +13,7 @@ route.get("/", (req, res) => {
 })
 route.use("/doctors", doktorRoutes)
 route.use("/bookings", bookingRoutes)
+route.use("/ujilab", ujilabRoutes)
 route.post("/rs", async (req, res) => {
     const data = await Instansi.create({
         nama: "Skilvul Hospital Jakarta",
