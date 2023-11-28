@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Antrian.belongsTo(models.User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
       Antrian.belongsTo(models.Jadwal, { foreignKey: 'jadwal_id' });
+      Antrian.belongsTo(models.Dokter, { foreignKey: 'dokter_id' });
     }
   }
   Antrian.init({
@@ -19,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     dokter_id:DataTypes.BIGINT,
     jadwal_id:DataTypes.BIGINT,
     status: DataTypes.BOOLEAN,
-    token: DataTypes.BIGINT,
+    token: DataTypes.STRING,
     keterangan: DataTypes.TEXT
   }, {
     sequelize,
