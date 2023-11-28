@@ -1,5 +1,6 @@
 const {Instansi} = require("../models")
 const model = require("../models")
+const {Op} = require('sequelize')
 
 module.exports = {
    getInstansi: async (req, res) => {
@@ -46,6 +47,22 @@ module.exports = {
     },
 
      updateInstansi: async (req, res) => {
+      const instansi = await Instansi .findOne({
+        where: {
+          id: req.params.id
+        }
+      });
+      if(!instansi) return res.status(404).json({message: "No Data Found"});
+      try{
+        await Instansi.findOne({
+          where: {
+            id : instansi.id
+          }
+        });
+        res.status(200).json({message: "Berhasil mengUpdate Instansi"});
+      } catch (error) {
+        res.status(400).json({message: error.message})
+      }
       
      },
 
@@ -68,16 +85,18 @@ module.exports = {
       }
      },
 
-     searchInstansiByAlamat: async (req, res) => {
-     
-     },
-     searchInstansiByName: async (req, res) => {
-     
-     },
-     searchInstansiByJarak: async (req, res) => {
-     
-     },
-     searchInstansiByArea: async (req, res) => {
-     
+     searchInstansi: async (alamat) => {
+      try {
+        const instansi = await Instansi.findAll({
+          where: {
+            alamat: {
+              [Op.like]: `%${alamat}%`
+            }
+          }
+        });
+        return instansi;
+      } catch (error) {
+        throw new Error(' Gagal Melakukan Pencarian')
+      }
      }
 }   

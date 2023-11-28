@@ -19,10 +19,7 @@ const {
     createInstansi,
     updateInstansi,
     deleteInstansiById,
-    searchInstansiByAlamat,
-    searchInstansiByName,
-    searchInstansiByJarak,
-    searchInstansiByArea
+    searchInstansi
 } = require("../controllers/instansi-controller");
 
 route.get("/" ,getInstansi);
@@ -30,11 +27,7 @@ route.get("/:id",getInstansiById);
 route.post("/",upload.single('image') ,createInstansi);
 route.put("/:id" ,updateInstansi);
 route.delete("/:id" ,deleteInstansiById);
-route.get("/:alamat" ,searchInstansiByAlamat);
-route.get("/:name" ,searchInstansiByName);
-route.get("/:jarak" ,searchInstansiByJarak);
-route.get("/:area" ,searchInstansiByArea);
-
+route.get("/:search" ,searchInstansi);
 module.exports = route;
 
 
