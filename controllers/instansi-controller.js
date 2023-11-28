@@ -32,7 +32,7 @@ module.exports = {
           no_tlp: req.body.no_tlp,
           area: req.body.area,
           email: req.body.email,
-          image: req.file.path
+          image: req.file.path 
         })
         res.status(201).json({
           message: "Berhasil Membuat Instansi",
@@ -43,21 +43,29 @@ module.exports = {
           message:error.message
         })
       }
-        //try {
-       //   const instansiData = req.body;
-         // const instansi = await Instansi.create(instansiData);
-          //res.status(200).json(instansi);
-      //} catch (err) {
-        //  res.status(400).json({ message: err.message });
-      //}
     },
 
      updateInstansi: async (req, res) => {
-     
+      
      },
 
-     deleteInstansi: async (req, res) => {
-     
+     deleteInstansiById: async (req, res) => {
+      const instansi = await Instansi.findOne({
+        where: {
+          id: req.params.id
+        }
+      });
+      if(!instansi) return res.status(404).json({message: "Instansi tidak di temukan"});
+      try {
+        await Instansi.destroy({
+          where: {
+            id: instansi.id
+          }
+        });
+        res.status(200).json({message: "Berhasil menghapus Instansi"});
+      } catch (error) {
+        res.status(400).json({message: error.message})
+      }
      },
 
      searchInstansiByAlamat: async (req, res) => {

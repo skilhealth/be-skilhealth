@@ -1,26 +1,16 @@
 const express = require("express")
 const route = express.Router();
-const multer = require('multer');
-const app = express();
-const path = require("path");
+const multer = require('multer')
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "./public/images");
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/');
     },
-    filename: (req, file, cb) => {
-        cb(null, path.parse(file.originalname).name + "-" + Date.now() + path.extname(file.originalname))
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
     }
-})
-
-const fileFilter = (req, file, cb) => {
-    if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-}
-app.use(multer({storage: fileStorage, fileFilter: fileFilter}). single('image'))
+});
+const upload = multer({storage: storage})
 
 
 const {
@@ -28,7 +18,7 @@ const {
     getInstansiById,
     createInstansi,
     updateInstansi,
-    deleteInstansi,
+    deleteInstansiById,
     searchInstansiByAlamat,
     searchInstansiByName,
     searchInstansiByJarak,
@@ -37,9 +27,9 @@ const {
 
 route.get("/" ,getInstansi);
 route.get("/:id",getInstansiById);
-route.post("/" ,createInstansi);
+route.post("/",upload.single('image') ,createInstansi);
 route.put("/:id" ,updateInstansi);
-route.delete("/:id" ,deleteInstansi);
+route.delete("/:id" ,deleteInstansiById);
 route.get("/:alamat" ,searchInstansiByAlamat);
 route.get("/:name" ,searchInstansiByName);
 route.get("/:jarak" ,searchInstansiByJarak);
