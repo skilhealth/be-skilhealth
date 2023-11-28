@@ -50,16 +50,16 @@ module.exports = {
     updateUserById: async (req,res) => {
         const id = req.params.id;
 
-    req.body.tgl_lahir = new Date(req.body.tgl_lahir)
+       req.body.tgl_lahir = new Date(req.body.tgl_lahir)
 
-    User.findByPk(id, req.body, {userFindAndModify: false})
-    .then(data => {
-      if (!data) {
+        User.findByPk(id, req.body, {userFindAndModify: false})
+        .then(data => {
+        if (!data) {
         res.status(404).send({message:"Tidak dapat mengupdate data"})
-      }
-      res.send({message: "Data berhasil di update"})
-    })
-    .catch(err => res.status(500).send({message: err.message}))
+        }
+        res.send({message: "Data berhasil di update"})
+     })
+      .catch(err => res.status(500).send({message: err.message}))
     },
 
     deleteUserById: async (req,res) => {
