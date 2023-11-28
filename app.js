@@ -11,6 +11,7 @@ app.use(express.json())
 app.use(cors())
 app.use(allRoutes)
 app.use(authRoute)
+app.use('/images', express.static('images'))
 
 
 app.listen(PORT, () => {

@@ -15,18 +15,18 @@ const upload = multer({storage: storage})
 
 
 const {
-    getAllUser,
-    getUserById,
-    addUser,
-    updateUserById,
-    deleteUserById
-} = require("../controllers/user-controllers");
+    getAllDokter,
+    getDokterById,
+    addDokter,
+    updateDokterById,
+    deleteDokterById
+} = require("../controllers/dokter-controller");
 
-route.get("/", getAllUser);
-route.get("/:id",getUserById);
-route.post("/",upload.single('images') ,addUser);
-route.put("/:id" ,updateUserById);
-route.delete("/:id", deleteUserById)
+route.get("/", getAllDokter);
+route.get("/:id",getDokterById);
+route.post("/",upload.single('images') ,addDokter);
+route.put("/:id" ,updateDokterById);
+route.delete("/:id", deleteDokterById)
 
 module.exports = route;
 

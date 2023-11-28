@@ -1,5 +1,5 @@
 const {User} = require('../models')
-
+const model = require("../models")
 module.exports = {
     getAllUser: async (req,res) => {
         try {
@@ -27,20 +27,24 @@ module.exports = {
     },
 
     addUser: async (req,res) => {
-    const {nama, tgl_lahir, jenis_kelamin, no_tlp, kredensial_id, images} = req.body;
-       try {
-        await User.create({
-            nama: nama,
-            tgl_lahir: tgl_lahir,
-            jenis_kelamin: jenis_kelamin,
-            no_tlp: no_tlp,
-            kredensial_id: kredensial_id,
-            images: images
-        });
-        res.status(201).json({message: "Berhasil membuat user"});
-       } catch (error) {
-        res.status(400).json({message: error.message})
-       }
+      try {
+        let user = await model.User.create({
+          nama: req.body.nama,
+          tgl_lahir: req.body.tgl_lahir,
+          jenis_kelamin: req.body.jenis_kelamin,
+          no_tlp: req.body.no_tlp,
+          kredensial_id: req.body.kredensial_id,
+          images: req.file.path 
+        })
+        res.status(201).json({
+          message: "Berhasil Membuat User",
+          data: user
+        })
+      } catch (error) {
+        res.status(404).json({
+          message:error.message
+        })
+      }
     },
 
     updateUserById: async (req,res) => {
