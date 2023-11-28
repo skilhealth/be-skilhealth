@@ -122,6 +122,51 @@ module.exports = {
       res.status(200).json(responseType);
     },
     changePassword: async (req, res) => {
-      res.status(200).json("ok");
-    }
+      let data = await otp.find({email: req.body.email,code:req.body.otpcode}) ;
+      const response = {}
+      if(data){
+        let currentTime = new Date().getTime();
+        let diff = data.expireIn - currentTime;
+        if(diff < 0){
+          response.message = 'Token Expire'
+          response.statusText = 'error'
+        } else {
+          let userKredensial = await User_kredensial.findOne({email: req.body.email})
+          userKredensial.password = req.body.password;
+          userKredensial.save();
+          res.message = 'Password Berhasil di Ubah'
+          response.statusText = 'Berhasil'
+        }
+      } else {
+        res.message ='Otp Tidak valid'
+        response.statusText = 'error'
+      }
+    },
+
+   /* const mailer = (email, otp)=> {
+      var nodemailer = require('nodemailer');
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        port:587,
+        secure: false,
+        auth: {
+          user: '',
+          pass: ''
+        }
+      });
+      var mailOptions = {
+        from:'youreemail@gmail.com',
+        to:'nayasuna1@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    } */
+
 }
