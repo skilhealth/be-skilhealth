@@ -20,8 +20,10 @@ module.exports = (sequelize, DataTypes) => {
   Antrian.init({
     user_id:DataTypes.BIGINT,
     dokter_id:DataTypes.BIGINT,
+    dokter_id:DataTypes.BIGINT,
     jadwal_id:DataTypes.BIGINT,
     status: DataTypes.BOOLEAN,
+    token: DataTypes.STRING,
     token: DataTypes.STRING,
     keterangan: DataTypes.TEXT
   }, {
