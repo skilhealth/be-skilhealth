@@ -1,5 +1,4 @@
 const {User_kredensial, otp} = require('../models')
-
 const argon2 = require("argon2");
 
 
@@ -77,9 +76,6 @@ module.exports = {
         res.status(400).json({message: error.message})
        }
     },  
-
-
-
     deleteUserKredensialById: async (req,res) => {
         const userKredensial = await User_kredensial.findOne({
             where: {
