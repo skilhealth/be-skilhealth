@@ -63,7 +63,6 @@ module.exports = {
       } catch (error) {
         res.status(400).json({message: error.message})
       }
-      
      },
 
      deleteInstansiById: async (req, res) => {
@@ -82,21 +81,6 @@ module.exports = {
         res.status(200).json({message: "Berhasil menghapus Instansi"});
       } catch (error) {
         res.status(400).json({message: error.message})
-      }
-     },
-
-     searchInstansi: async (alamat) => {
-      try {
-        const instansi = await Instansi.findAll({
-          where: {
-            alamat: {
-              [Op.like]: `%${alamat}%`
-            }
-          }
-        });
-        return instansi;
-      } catch (error) {
-        throw new Error(' Gagal Melakukan Pencarian')
       }
      }
 }   
