@@ -8,7 +8,8 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
-    }
+    },
+    resave: true
 });
 
 const upload = multer({storage: storage})
@@ -22,11 +23,13 @@ const {
     deleteDokterById
 } = require("../controllers/dokter-controller");
 
-route.get("/", getAllDokter);
+route.get("/", getAllDokter); // untuk keperluan development bakal dihapus
+
 route.get("/:id",getDokterById);
 route.post("/",upload.single('images') ,addDokter);
-route.put("/:id" ,updateDokterById);
-route.delete("/:id", deleteDokterById)
+route.put("/:id" ,upload.single('images'),updateDokterById);
+
+route.delete("/:id", deleteDokterById) // untuk keperluan development bakal dihapus
 
 module.exports = route;
 

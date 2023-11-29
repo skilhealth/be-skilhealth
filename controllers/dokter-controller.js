@@ -52,7 +52,57 @@ module.exports = {
     },
 
     updateDokterById: async (req,res) => {
-     
+      try {
+        const dokterId = req.params.id; // Ambil ID dokter dari parameter URL
+        const {
+          nama,
+          spesialis_id,
+          instansi_id,
+          deskripsi,
+          skd,
+          pengalaman,
+          pendidikan,
+          no_tlp,
+          status
+        } = req.body;
+    
+        let images; // Variabel untuk menyimpan path gambar baru
+    
+        // Periksa jika ada file gambar baru di form-data
+        if (req.file) {
+          images = req.file.path; // Ambil path gambar baru dari form-data
+        }
+    
+        // Cari dokter berdasarkan ID
+        let dokter = await Dokter.findByPk(dokterId);
+    
+        if (!dokter) {
+          return res.status(404).json({ message: 'Dokter tidak ditemukan' });
+        }
+    
+        // Perbarui nilai-nilai atribut dokter sesuai dengan data baru
+        dokter.nama = nama || dokter.nama;
+        dokter.spesialis_id = spesialis_id || dokter.spesialis_id;
+        dokter.instansi_id = instansi_id || dokter.instansi_id;
+        dokter.deskripsi = deskripsi || dokter.deskripsi;
+        dokter.skd = skd || dokter.skd;
+        dokter.pengalaman = pengalaman || dokter.pengalaman;
+        dokter.pendidikan = pendidikan || dokter.pendidikan;
+        dokter.no_tlp = no_tlp || dokter.no_tlp;
+        dokter.status = status || dokter.status;
+    
+        // Jika ada path gambar baru, update nilai images
+        if (images) {
+          dokter.images = images;
+        }
+    
+        // Simpan perubahan ke database
+        await dokter.save();
+    
+        res.status(200).json(dokter); // Beri respons dengan dokter yang telah diperbarui
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+      }
     },
 
     deleteDokterById: async (req,res) => {

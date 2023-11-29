@@ -48,18 +48,49 @@ module.exports = {
     },
 
     updateUserById: async (req,res) => {
-        const id = req.params.id;
-
-       req.body.tgl_lahir = new Date(req.body.tgl_lahir)
-
-        User.findByPk(id, req.body, {userFindAndModify: false})
-        .then(data => {
-        if (!data) {
-        res.status(404).send({message:"Tidak dapat mengupdate data"})
+      try {
+        const userId = req.params.id; 
+        const {
+          nama,
+          tgl_lahir,
+          jenis_kelamin,
+          no_tlp,
+          kredensial_id
+        } = req.body;
+    
+        let images; // Variabel untuk menyimpan path gambar baru
+    
+        // Periksa jika ada file gambar baru di form-data
+        if (req.file) {
+          images = req.file.path; // Ambil path gambar baru dari form-data
         }
-        res.send({message: "Data berhasil di update"})
-     })
-      .catch(err => res.status(500).send({message: err.message}))
+    
+      
+        let user = await User.findByPk(userId);
+    
+        if (!user) {
+          return res.status(404).json({ message: 'User tidak ditemukan' });
+        }
+    
+        // Perbarui nilai-nilai atribut User sesuai dengan data baru
+        user.nama = nama || user.nama;
+        user.tgl_lahir = tgl_lahir || user.tgl_lahir;
+        user.jenis_kelamin = jenis_kelamin || user.jenis_kelamin;
+        user.no_tlp = no_tlp || user.no_tlp;
+        user.kredensial_id = kredensial_id || user.kredensial_id;
+    
+        // Jika ada path gambar baru, update nilai images
+        if (images) {
+          user.images = images;
+        }
+    
+        // Simpan perubahan ke database
+        await user.save();
+    
+        res.status(200).json(user); // Beri respons dengan user yang telah diperbarui
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+      }
     },
 
     deleteUserById: async (req,res) => {
