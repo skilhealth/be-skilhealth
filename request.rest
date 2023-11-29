@@ -1,0 +1,14 @@
+POST http://localhost:4000/login
+Content-Type: application/json
+
+
+{
+ "email": "Jaydon@gmail.com",
+ "password": "1455"
+}
+
+### 
+
+DELETE http://localhost:4000/logout
+Content-Type: application/json
+
