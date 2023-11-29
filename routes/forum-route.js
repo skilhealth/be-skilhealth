@@ -3,9 +3,7 @@ const { getAllForum, getForumById, addForum, updateForumById, deleteForumById } 
 const route = express.Router()
 
 route.get("/", getAllForum)
-route.get("/:id", getForumById)
 route.post("/", addForum)
 route.put("/:id", updateForumById)
-route.delete("/", deleteForumById)
 
 module.exports = route

@@ -10,19 +10,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.BIGINT
       },
       dokter_id: {
         type: Sequelize.BIGINT
       },
       judul: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       pertanyaan: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       jawaban: {
         type: Sequelize.TEXT
+      },
+      status: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

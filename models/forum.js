@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     dokter_id: DataTypes.BIGINT,
     judul: DataTypes.STRING,
     pertanyaan: DataTypes.TEXT,
-    jawaban: DataTypes.TEXT
+    jawaban: DataTypes.TEXT,
+    status: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Forum',
