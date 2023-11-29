@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     alamat: DataTypes.STRING,
     no_tlp: DataTypes.STRING,
     area: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Instansi',
