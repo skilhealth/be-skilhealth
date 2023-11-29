@@ -1,4 +1,4 @@
-const { Antrian, User, Dokter, Instansi, Spesialis, Jadwal } = require("../models")
+const { Antrian, User, Dokter, Instansi, Spesialis, Jadwal, ujilab } = require("../models")
 const { Sequelize, Op, where } = require("sequelize");
 
 module.exports = {
@@ -66,7 +66,7 @@ module.exports = {
                         attributes: ['nama']
                     }]
                 }],
-                order: [['status','ASC'],[Antrian.associations.Jadwal,'date','ASC']] //false berarti blom mulai
+                order: [['status', 'ASC'], [Antrian.associations.Jadwal, 'date', 'ASC']] //false berarti blom mulai
             })
             if (antrian.length === 0)
                 return res.status(200).json({
@@ -85,7 +85,7 @@ module.exports = {
     },
     getBookingByDokterId: async (req, res) => {
         try {
-            const id = req.query.id
+            const id = req.query.user
             console.log(id)
             const antrian = await Antrian.findAll({
                 where: {
@@ -95,15 +95,20 @@ module.exports = {
                 include: [{
                     model: User,
                     required: true,
-                    attributes: ['id','nama','images']
+                    attributes: ['id', 'nama', 'images']
                 },
                 {
                     model: Jadwal,
                     required: true,
                     attributes: ["date", "tipe"]
                 },
+                {
+                    model:ujilab,
+                    required:false,
+                    attributes:['id']
+                }
                 ],
-                order: [['status','ASC'],[Antrian.associations.Jadwal,'date','ASC']] //false berarti blom mulai
+                order: [['status', 'ASC'], [Antrian.associations.Jadwal, 'date', 'ASC']] //false berarti blom mulai
             })
             if (antrian.length === 0)
                 return res.status(200).json({
@@ -125,10 +130,15 @@ module.exports = {
             const { id } = req.params
             const antrian = await Antrian.findByPk((id), {
                 attributes: ['id', 'status', 'token'],
-                include: [{
+                include: [
+                    {
+                    model:User,
+                    required:true,
+                    attributes:['id','nama']
+                    }, {
                     model: Dokter,
                     required: true,
-                    attributes: ['id', 'nama', 'status', 'deskripsi', 'skd', 'pengalaman', 'images', 'no_tlp','pendidikan'],
+                    attributes: ['id', 'nama', 'status', 'deskripsi', 'skd', 'pengalaman', 'images', 'no_tlp', 'pendidikan'],
                     include: [{
                         model: Instansi,
                         required: true,
@@ -142,13 +152,17 @@ module.exports = {
                     {
                         model: Jadwal,
                         required: true,
-                        attributes: ['id','date', 'tipe', 'status'],
+                        attributes: ['id', 'date', 'tipe', 'status'],
                     }
                     ]
                 }, {
                     model: Jadwal,
                     required: true,
                     attributes: ['id', 'date', 'tipe', 'status']
+                }, {
+                    model: ujilab,
+                    required: false,
+                    attributes: ['id', 'judul', 'keluhan', 'diagnosa', 'catatan', 'dokumen', 'createdAt']
                 }]
             })
             if (!antrian)
@@ -174,9 +188,9 @@ module.exports = {
             res.status(200).json({
                 message: "Antrian Berhasil ditemukan",
                 data: antrian,
-                antrian:{
-                    sisa:sisa.count,
-                    ke:ke.count
+                antrian: {
+                    sisa: sisa.count,
+                    ke: ke.count
                 }
             })
         } catch (err) {
@@ -199,6 +213,27 @@ module.exports = {
             })
             res.status(200).json({
                 message: "Antrian Berhasil edit",
+            })
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                Message: "Terjadi Kesalahan Internal Server"
+            })
+        }
+    },
+    toggleBooking: async (req, res) => {
+        try {
+            const { id } = req.params
+            const { status } = req.body
+            await Antrian.update({
+                status : status
+            }, {
+                where: {
+                    id: id
+                }
+            })
+            res.status(200).json({
+                message: "status Antrian Berhasil dirubah",
             })
         } catch (err) {
             console.log(err)

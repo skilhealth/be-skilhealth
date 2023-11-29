@@ -33,8 +33,8 @@ module.exports = {
     },
     getUjilabyId: async (req, res) => {
         try {
-            const {id} = req.params
-            const Ujilab = await ujilab.findByPk((id),{
+            const { id } = req.params
+            const Ujilab = await ujilab.findByPk((id), {
                 attributes: { exclude: ['updatedAt'] },
                 include: [{
                     model: Dokter,
@@ -82,5 +82,32 @@ module.exports = {
                 Message: "Terjadi Kesalahan Internal Server"
             })
         }
-    }
+    },
+    editUjilab: async (req, res) => {
+        try {
+            const { id } = req.params
+            const data = req.body
+            await ujilab.update({
+                judul: data.judul,
+                keluhan: data.keluhan,
+                diagnosa: data.diagnosa,
+                catatan: data.catatan,
+                dokumen: data.dokumen
+            },{
+                where:{
+                    id:id
+                }
+            })
+            res.json({
+                message: "Berhasil edit Ujilab",
+            })
+
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                Message: "Terjadi Kesalahan Internal Server"
+            })
+        }
+    },
+
 }
