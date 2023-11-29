@@ -1,6 +1,6 @@
 const {Instansi} = require("../models")
 const model = require("../models")
-const {Op} = require('sequelize')
+const {Op} = require("sequelize")
 
 module.exports = {
    getInstansi: async (req, res) => {
@@ -81,6 +81,54 @@ module.exports = {
         res.status(200).json({message: "Berhasil menghapus Instansi"});
       } catch (error) {
         res.status(400).json({message: error.message})
+      }
+     },
+
+     getInstansiByNama: async (req, res) => {
+      const {nama} =req.query;
+      try {
+        const instansi = await Instansi.findAll({
+          where: {
+            nama: {
+              [Op.like]: `%${nama}%`
+            }
+          }
+        });
+        res.json(instansi);
+      } catch (error){
+        res.status(500).json({message: error.message});
+      }
+     },
+
+     getInstansiByAlamat: async (req, res) => {
+      const {alamat} =req.query;
+      try {
+        const instansi = await Instansi.findAll({
+          where: {
+            alamat: {
+              [Op.like]: `%${alamat}%`
+            }
+          }
+        });
+        res.json(instansi);
+      } catch (error){
+        res.status(500).json({message: error.message});
+      }
+     },
+
+     getInstansiByArea: async (req, res) => {
+      const {area} =req.query;
+      try {
+        const instansi = await Instansi.findAll({
+          where: {
+            area: {
+              [Op.like]: `%${area}%`
+            }
+          }
+        });
+        res.json(instansi);
+      } catch (error){
+        res.status(500).json({message: error.message});
       }
      }
 }   

@@ -16,16 +16,25 @@ const upload = multer({storage: storage})
 const {
     getInstansi,
     getInstansiById,
+    getInstansiByNama,
+    getInstansiByAlamat,
+    getInstansiByArea,
     createInstansi,
     updateInstansi,
     deleteInstansiById
 } = require("../controllers/instansi-controller");
 
 route.get("/" ,getInstansi);
-route.get("/:id",getInstansiById);
+
+route.get("/:id",getInstansiById);//  Ini untuk development nanti bakal di hapus
+
+route.get("/search-by-name" ,getInstansiByNama)
+route.get("/search-by-alamat" ,getInstansiByAlamat)
+route.get("/search-by-area" ,getInstansiByArea)
 route.post("/",upload.single('image') ,createInstansi);
-route.put("/:id" ,updateInstansi);
-route.delete("/:id" ,deleteInstansiById);
+
+route.put("/:id" ,updateInstansi); // Ini untuk development nanti bakal di hapus
+route.delete("/:id" ,deleteInstansiById); // Ini untuk development nanti bakal di hapus
 module.exports = route;
 
 
