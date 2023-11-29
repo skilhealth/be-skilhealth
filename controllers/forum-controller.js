@@ -1,9 +1,29 @@
-const { Forum } = require("../models");
+const { Forum, Dokter, User, Spesialis } = require("../models");
 
 module.exports = {
   getAllForum: async (req, res) => {
     try {
-      const forums = await Forum.findAll();
+      const forums = await Forum.findAll({
+        include: [
+          {
+            model: Dokter,
+            attributes: ["id", "nama"],
+            include: [
+              {
+                model: Spesialis,
+                as: "Spesiali",
+                required: true,
+                attributes: ["nama"],
+              },
+            ],
+          },
+          {
+            model: User,
+            attributes: ["id", "nama"],
+          },
+        ],
+        order: [["createdAt", "DESC"]],
+      });
 
       res.json({
         message: "Successfully retrieved all forums",
