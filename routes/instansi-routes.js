@@ -35,6 +35,7 @@ route.post("/",upload.single('image') ,createInstansi);
 
 route.put("/:id" ,updateInstansi); // Ini untuk development nanti bakal di hapus
 route.delete("/:id" ,deleteInstansiById); // Ini untuk development nanti bakal di hapus
+
 module.exports = route;
 
 
