@@ -1,9 +1,9 @@
 const express = require("express")
-const {} = require("../controllers/ujilab-controllers")
+const { getUjilabByuserId, addUjilab, getUjilabyId } = require("../controllers/ujilab-controllers")
 const route = express.Router()
 
-// route.post("/",searchDoctor)//Pencarian Dokter Mobile
-// route.post("/add",addDoctor) //gimik buat nambahin data nanti diapus lagi
-// route.get("/:id",DokterById) // buat detail dotor page
-// route.get("/",GetAllDoctor) // buat nampilin semua dokter
+route.get("/",getUjilabByuserId)
+route.get("/:id",getUjilabyId)
+route.post("/add",addUjilab)
+
 module.exports = route
