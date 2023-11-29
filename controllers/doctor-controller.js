@@ -18,8 +18,7 @@ module.exports = {
                 }
             }
             const doctors = await Jadwal.findAll({
-                attributes: [
-                    "dokter_id"],
+                attributes: [""],
                 where: Lanjutan,
                 include: [{
                     model: Dokter,

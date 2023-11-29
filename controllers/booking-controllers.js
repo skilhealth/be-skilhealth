@@ -83,6 +83,43 @@ module.exports = {
             })
         }
     },
+    getBookingByDokterId: async (req, res) => {
+        try {
+            const id = req.query.id
+            console.log(id)
+            const antrian = await Antrian.findAll({
+                where: {
+                    "dokter_id": id
+                },
+                attributes: ['id', 'status'],
+                include: [{
+                    model: User,
+                    required: true,
+                    attributes: ['id','nama','images']
+                },
+                {
+                    model: Jadwal,
+                    required: true,
+                    attributes: ["date", "tipe"]
+                },
+                ],
+                order: [['status','ASC'],[Antrian.associations.Jadwal,'date','ASC']] //false berarti blom mulai
+            })
+            if (antrian.length === 0)
+                return res.status(200).json({
+                    message: "Antrian Kosong"
+                })
+            res.status(200).json({
+                message: "Menampilkan Antrian",
+                data: antrian
+            })
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                Message: "Terjadi Kesalahan Internal Server"
+            })
+        }
+    },
     getBookingById: async (req, res) => {
         try {
             const { id } = req.params
@@ -91,7 +128,7 @@ module.exports = {
                 include: [{
                     model: Dokter,
                     required: true,
-                    attributes: ['id', 'nama', 'status', 'deskripsi', 'skd', 'pengalaman', 'images', 'no_tlp'],
+                    attributes: ['id', 'nama', 'status', 'deskripsi', 'skd', 'pengalaman', 'images', 'no_tlp','pendidikan'],
                     include: [{
                         model: Instansi,
                         required: true,
@@ -105,7 +142,7 @@ module.exports = {
                     {
                         model: Jadwal,
                         required: true,
-                        attributes: ['date', 'tipe', 'status'],
+                        attributes: ['id','date', 'tipe', 'status'],
                     }
                     ]
                 }, {
@@ -117,12 +154,19 @@ module.exports = {
             if (!antrian)
                 return res.status(200).json({
                     message: "Antrian Tidak ditemukan"
-                })
-            const { count, rows } = Antrian.findAndCountAll({
+                });
+            console.log(antrian.Jadwal.id)
+            const sisa = await Antrian.findAndCountAll({
                 where: {
                     id: {
-                        [Op.gte]: id
+                        [Op.gt]: id
                     },
+                    status: false,
+                    jadwal_id: antrian.Jadwal.id,
+                }
+            })
+            const ke = await Antrian.findAndCountAll({
+                where: {
                     status: false,
                     jadwal_id: antrian.Jadwal.id,
                 }
@@ -130,7 +174,10 @@ module.exports = {
             res.status(200).json({
                 message: "Antrian Berhasil ditemukan",
                 data: antrian,
-                antrian: count
+                antrian:{
+                    sisa:sisa.count,
+                    ke:ke.count
+                }
             })
         } catch (err) {
             console.log(err)
