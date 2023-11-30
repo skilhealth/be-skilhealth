@@ -14,11 +14,9 @@ module.exports = {
 
     getUserById: async (req,res) => {
         try {
-            const response = await User.findOne({
+          const id = req.params.id
+            const response = await User.findByPk((id),{
             attributes:['id','nama', 'tgl_lahir', 'jenis_kelamin', 'no_tlp', 'kredensial_id', 'images'],
-              where: {
-                id : req.params.id
-              }
             });
             res.json(response);
           } catch (error) {

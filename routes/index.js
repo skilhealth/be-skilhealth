@@ -21,9 +21,9 @@ route.get("/", (req, res) => {
 
 route.use("/forum", forumRoute)
 route.use("/doctors", doktorRoutes)
-route.use("/bookings", bookingRoutes)
-route.use("/ujilab", ujilabRoutes)
-route.use("/ujilab", ujilabRoutes)
+route.use("/bookings",tokenVerify, bookingRoutes)
+route.use("/ujilab",tokenVerify, ujilabRoutes)
+route.use("/ujilab",tokenVerify, ujilabRoutes)
 route.use("/instansi", instansiRoute)
 route.use("/user", userRoute)
 route.use("/auth", authRoute)

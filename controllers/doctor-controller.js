@@ -5,6 +5,7 @@ module.exports = {
         try {
             const data = req.body
             let { Lanjutan } = req.body
+            console.log(data)
             if (data.nama !== undefined) {
                 Lanjutan = {
                     ...Lanjutan,
@@ -18,7 +19,7 @@ module.exports = {
                 }
             }
             const doctors = await Jadwal.findAll({
-                attributes: [""],
+                attributes: ["id"],
                 where: Lanjutan,
                 include: [{
                     model: Dokter,
@@ -95,7 +96,7 @@ module.exports = {
                 {
                     model: Jadwal,
                     required: false,
-                    attributes: ['date', 'tipe', 'status'],
+                    attributes: ['date', 'tipe', 'status','harga'],
                 }
                 ]
             })
