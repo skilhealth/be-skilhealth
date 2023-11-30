@@ -88,11 +88,11 @@ module.exports = {
             }
             const email = user.email;
             const role = user.role;
-            const expiresIn = 3600
+            const expiresIn = 43200
             const token = jwt.sign({
                 email: email,
                 role: role
-            }, "INTROVERT", { expiresIn })
+            }, process.env.JWT_KEY, { expiresIn })
             res.status(200).json(
                 {
                     user: {

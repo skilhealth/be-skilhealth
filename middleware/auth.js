@@ -9,7 +9,7 @@ const tokenVerify = (req, res, next) => {
         const token = header.split(" ")[1]
         if (!token) throw new Error("token tidak ditemukan")
 
-        const user = jwt.verify(token,"INTROVERT")
+        const user = jwt.verify(token,process.env.JWT_KEY)
         req.user = user
         next()
     } catch (err) {
