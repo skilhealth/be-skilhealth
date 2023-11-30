@@ -17,8 +17,8 @@ module.exports = {
             const antrian = Antrian.create({
                 user_id: data.user_id,
                 jadwal_id: data.jadwal_id,
-                doctor_id: data.doctor_id,
-                status: true,
+                dokter_id: data.doctor_id,
+                status: false,
                 token: generateToken(6),
                 keterangan: data.keterangan
             })

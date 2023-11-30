@@ -96,7 +96,7 @@ module.exports = {
                 {
                     model: Jadwal,
                     required: false,
-                    attributes: ['date', 'tipe', 'status','harga'],
+                    attributes: ['id','date', 'tipe', 'status','harga'],
                 }
                 ]
             })

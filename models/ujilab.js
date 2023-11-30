@@ -29,6 +29,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ujilab',
+    freezeTableName: true
+
   });
   return ujilab;
 };

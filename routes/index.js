@@ -9,6 +9,7 @@ const userRoute = require('./user-routes');
 const userKredensial = require('./user-kredensial-route');
 const authRoute = require('./auth.route');
 const dokterRoute = require('./dokter-route')
+const spesialisRoute = require('./spesialis-route')
 
 const tokenVerify = require("../middleware/auth")
 
@@ -29,5 +30,7 @@ route.use("/user", userRoute)
 route.use("/auth", authRoute)
 route.use("/users", userKredensial)
 route.use("/dokter", dokterRoute)
+route.use("/spesialis", spesialisRoute)
+
 
 module.exports = route
