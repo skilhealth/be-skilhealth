@@ -225,8 +225,12 @@ module.exports = {
         try {
             const { id } = req.params
             const { status } = req.body
+            let data = true;
+            if(status === true){
+                data = false
+            }
             await Antrian.update({
-                status : status
+                status : data
             }, {
                 where: {
                     id: id

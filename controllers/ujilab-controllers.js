@@ -69,7 +69,6 @@ module.exports = {
                 keluhan: data.keluhan,
                 diagnosa: data.diagnosa,
                 catatan: data.catatan,
-                dokumen: data.dokumen
             })
             res.json({
                 message: "Berhasil Menambahkan Ujilab",
