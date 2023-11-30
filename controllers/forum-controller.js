@@ -74,6 +74,7 @@ module.exports = {
         {
           dokter_id: data.dokter_id,
           jawaban: data.jawaban,
+          status:true
         },
         {
           where: {
