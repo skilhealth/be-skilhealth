@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Dokter.hasMany(models.Jadwal, { foreignKey: 'dokter_id' });
       Dokter.hasMany(models.Forum, {foreignKey: 'dokter_id'})
       Dokter.belongsTo(models.Spesialis, {foreignKey: "spesialis_id", onDelete: 'CASCADE'});
+      Dokter.belongsTo(models.User_kredensial, {foreignKey: "kredensial_id", onDelete: 'CASCADE'});
       Dokter.belongsTo(models.Instansi, {foreignKey: 'instansi_id' , onDelete: 'CASCADE'});
     }
   }

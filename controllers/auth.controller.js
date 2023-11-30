@@ -1,6 +1,7 @@
-const { User_kredensial, User } = require('../models')
+const { User_kredensial, User, Dokter } = require('../models')
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken');
+const dokter = require('../models/dokter');
 
 
 module.exports = {
@@ -46,18 +47,45 @@ module.exports = {
             const user = await User_kredensial.findOne({
                 include: [{
                     model: User,
-                    require: true,
+                }, {
+                    model: Dokter,
                 }],
                 where: {
                     email: req.body.email
                 }
             });
+            console.log(user.role)
             if (!user) return res.status(404).json(
                 { message: "User tidak ditemukan" });
-            const match = await argon2.verify(user.password,data.password);
+            const match = await argon2.verify(user.password, data.password);
             if (!match) return res.status(400).json(
                 { message: "Password Salah" });
-            const id = user.id;
+            let dataUser = {}
+            if (user.role === "dokter") {
+                dataUser = {
+                    id: user.Dokter.id,
+                    email: user.email,
+                    role: user.role,
+                    nama:user.Dokter.nama,
+                    status:user.Dokter.status,
+                    rs:user.Dokter.instansi_id,
+                    sp:user.Dokter.spesialis_id,
+                    tlp:user.Dokter.no_tlp,
+                    des:user.Dokter.deskripsi
+                }
+            } else {
+                console.log("ini pasien")
+                dataUser = {
+                    id: user.User.id,
+                    nama: user.User.nama,
+                    tgl_lahir: user.User.tgl_lahir,
+                    jenis_kelamin: user.User.jenis_kelamin,
+                    no_tlp: user.User.no_tlp,
+                    images: user.images,
+                    email: user.email,
+                    role: user.role
+                }
+            }
             const email = user.email;
             const role = user.role;
             const expiresIn = 3600
@@ -68,14 +96,7 @@ module.exports = {
             res.status(200).json(
                 {
                     user: {
-                        id: user.User.id,
-                        nama:user.User.nama,
-                        tgl_lahir:user.User.tgl_lahir,
-                        jenis_kelamin:user.User.jenis_kelamin,
-                        no_tlp:user.User.no_tlp,
-                        images:user.images,
-                        email:user.email,
-                        role:user.role
+                        ...dataUser
                     },
                     token: token
                 });
