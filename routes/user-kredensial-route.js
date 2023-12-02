@@ -22,7 +22,7 @@ route.put("/:id" ,updateUserKredensialById);
 route.delete("/:id", deleteUserKredensialById) // Untuk keperluan development bakal dihapus
 
 route.post("/email-send", emailSend)
-route.post("/change-password",tokenVerify, changePassword)
+route.post("/change-password", changePassword)
 
 module.exports = route;
 
