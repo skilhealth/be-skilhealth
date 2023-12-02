@@ -1,4 +1,4 @@
-const { User_kredensial, otp } = require('../models')
+const { User_kredensial } = require('../models')
 const argon2 = require("argon2");
 
 
@@ -126,31 +126,5 @@ module.exports = {
       hashPassword
     });
   },
-
-  /* const mailer = (email, otp)=> {
-     var nodemailer = require('nodemailer');
-     var transporter = nodemailer.createTransport({
-       service: 'gmail',
-       port:587,
-       secure: false,
-       auth: {
-         user: '',
-         pass: ''
-       }
-     });
-     var mailOptions = {
-       from:'youreemail@gmail.com',
-       to:'nayasuna1@gmail.com',
-       subject: 'Sending Email using Node.js',
-       text: 'That was easy!'
-     };
-     transporter.sendMail(mailOptions, function(error, info){
-       if (error) {
-         console.log(error);
-       } else {
-         console.log('Email sent: ' + info.response);
-       }
-     });
-   } */
 
 }
