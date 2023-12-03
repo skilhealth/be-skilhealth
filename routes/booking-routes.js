@@ -8,7 +8,7 @@ route.get("/doctor",getBookingByDokterId) // buat nampilin list booking yang dib
 route.get("/:id",getBookingById) // buat nampilin salah satu detail booking yang dipesan pengguna
 route.patch("/:id/edit",editBooking)  // buat edit janji temu ad di halaman editbooking
 route.patch("/:id/toggle",toggleBooking)  // merubah statsu booking
-route.delete("/:id/edit",refundBooking) // buat delet booking ada di halaman refund booking
+route.delete("/:id",refundBooking) // buat delet booking ada di halaman refund booking
 
 
 module.exports = route
