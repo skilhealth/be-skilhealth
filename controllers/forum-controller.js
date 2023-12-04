@@ -82,7 +82,6 @@ module.exports = {
           },
         }
       );
-      console.log(id);
       res.json({
         message: "Successfully updated forum by id",
         data: data,

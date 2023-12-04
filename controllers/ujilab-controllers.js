@@ -3,7 +3,6 @@ module.exports = {
     getUjilabByuserId: async (req, res) => {
         try {
             const id = req.query.user
-            console.log(id)
             const Ujilab = await ujilab.findAll({
                 attributes: { exclude: ['updatedAt'] },
                 where: {
@@ -25,7 +24,7 @@ module.exports = {
             })
 
         } catch (err) {
-            console.log(err)
+            console.err(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -52,7 +51,7 @@ module.exports = {
             })
 
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -76,7 +75,7 @@ module.exports = {
             })
 
         } catch (err) {
-            console.log(err)
+            console.err(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -102,7 +101,7 @@ module.exports = {
             })
 
         } catch (err) {
-            console.log(err)
+            console.err(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })

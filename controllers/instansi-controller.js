@@ -8,7 +8,7 @@ module.exports = {
       const response = await Instansi.findAll();
       res.json(response);
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
    },
 
@@ -21,7 +21,7 @@ module.exports = {
       });
       res.json(response);
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
     },
 

@@ -35,7 +35,7 @@ module.exports = {
                 message: "Berhasil Melakukan Registrasi",
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.json({
                 message: "Terjadi Kesalahan Internal Server"
             })
@@ -54,7 +54,6 @@ module.exports = {
                     email: req.body.email
                 }
             });
-            console.log(user.role)
             if (!user) return res.status(404).json(
                 { message: "User tidak ditemukan" });
             const match = await argon2.verify(user.password, data.password);
@@ -66,15 +65,14 @@ module.exports = {
                     id: user.Dokter.id,
                     email: user.email,
                     role: user.role,
-                    nama:user.Dokter.nama,
-                    status:user.Dokter.status,
-                    rs:user.Dokter.instansi_id,
-                    sp:user.Dokter.spesialis_id,
-                    tlp:user.Dokter.no_tlp,
-                    des:user.Dokter.deskripsi
+                    nama: user.Dokter.nama,
+                    status: user.Dokter.status,
+                    rs: user.Dokter.instansi_id,
+                    sp: user.Dokter.spesialis_id,
+                    tlp: user.Dokter.no_tlp,
+                    des: user.Dokter.deskripsi
                 }
             } else {
-                console.log("ini pasien")
                 dataUser = {
                     id: user.User.id,
                     nama: user.User.nama,

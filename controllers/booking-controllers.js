@@ -27,7 +27,7 @@ module.exports = {
                 data: antrian
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -36,7 +36,6 @@ module.exports = {
     getBookingByUserId: async (req, res) => {
         try {
             const id = req.query.user
-            console.log(id)
             const antrian = await Antrian.findAll({
                 where: {
                     "user_id": id
@@ -77,7 +76,7 @@ module.exports = {
                 data: antrian
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -86,7 +85,6 @@ module.exports = {
     getBookingByDokterId: async (req, res) => {
         try {
             const id = req.query.user
-            console.log(id)
             const antrian = await Antrian.findAll({
                 where: {
                     "dokter_id": id
@@ -119,7 +117,7 @@ module.exports = {
                 data: antrian
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -169,7 +167,6 @@ module.exports = {
                 return res.status(200).json({
                     message: "Antrian Tidak ditemukan"
                 });
-            console.log(antrian.Jadwal.id)
             const sisa = await Antrian.findAndCountAll({
                 where: {
                     id: {
@@ -194,7 +191,7 @@ module.exports = {
                 }
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -215,7 +212,7 @@ module.exports = {
                 message: "Antrian Berhasil edit",
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -240,7 +237,7 @@ module.exports = {
                 message: "status Antrian Berhasil dirubah",
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
@@ -258,7 +255,7 @@ module.exports = {
                 message: "Antrian Berhasil refund",
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
             res.status(500).json({
                 Message: "Terjadi Kesalahan Internal Server"
             })
