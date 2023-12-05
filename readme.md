@@ -1,12 +1,12 @@
-# Skilhealth
+# <span style="color:rgb(185 28 28);">Skilhealth</span>
 
 SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pasien, dimana tujuan utamanya adalah, pasien dapat melakukan reservasi jadwal bersama dokter tanpa harus secara langsung ke rumah sakit.
 
-## API Link
+## <span style="color:rgb(185 28 28);">Web Link</span>
 
     https://be-skilhealth.up.railway.app/
 
-## Get Doctors
+## <span style="color:rgb(185 28 28);">Get Doctors</span>
 
 ### Request
 
@@ -88,27 +88,27 @@ SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pas
 
 ### Response
 
-   {
-  "message": "Berhasil Menambahkan Dokter",
-  "data": {
-    "id": 11,
-    "nama": "Dr. Rivai",
-    "deskripsi": "Dr. Rivai adalah seorang dokter spesialis mata dengan pengalaman lebih dari 9 tahun. Saat ini, Dr. Rivai berpraktik di Skilvul Hospital Medan, berfokus pada perawatan personal dan komprehensif. Dengan keterampilan dan pengetahuan terbaru, Dr. Rivai berkomitmen memberikan solusi yang tepat dan perawatan berkualitas tinggi kepada setiap pasien.\r\n",
-    "skd": "SKD456",
-    "pengalaman": [
-      "Rumah Sakit ABC",
-      "Rumah Sakit XYZ"
-    ],
-    "pendidikan": [
-      "Universitas X",
-      "Pelatihan A"
-    ],
-    "status": true,
-    "images": "\\images\\dokter\\doctor1.png",
-    "updatedAt": "2023-12-05T15:53:33.979Z",
-    "createdAt": "2023-12-05T15:53:33.979Z"
-  }
-}
+    {
+    "message": "Berhasil Menambahkan Dokter",
+    "data": {
+        "id": 11,
+        "nama": "Dr. Rivai",
+        "deskripsi": "Dr. Rivai adalah seorang dokter spesialis mata dengan pengalaman lebih dari 9 tahun. Saat ini, Dr. Rivai berpraktik di Skilvul Hospital Medan, berfokus pada perawatan personal dan komprehensif. Dengan keterampilan dan pengetahuan terbaru, Dr. Rivai berkomitmen memberikan solusi yang tepat dan perawatan berkualitas tinggi kepada setiap pasien.\r\n",
+        "skd": "SKD456",
+        "pengalaman": [
+        "Rumah Sakit ABC",
+        "Rumah Sakit XYZ"
+        ],
+        "pendidikan": [
+        "Universitas X",
+        "Pelatihan A"
+        ],
+        "status": true,
+        "images": "\\images\\dokter\\doctor1.png",
+        "updatedAt": "2023-12-05T15:53:33.979Z",
+        "createdAt": "2023-12-05T15:53:33.979Z"
+    }
+    }
 
 ## Search Doctor (Mobile)
 
