@@ -1,10 +1,30 @@
-# <span style="color:rgb(185 28 28);">Skilhealth</span>
+# <font color="rgb(185 28 28)">Skilhealth</font>
 
 SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pasien, dimana tujuan utamanya adalah, pasien dapat melakukan reservasi jadwal bersama dokter tanpa harus secara langsung ke rumah sakit.
 
 ## <span style="color:rgb(185 28 28);">Web Link</span>
 
     https://be-skilhealth.up.railway.app/
+
+## Register
+
+### Request
+
+`GET /auth/register`
+
+### Response
+
+    -
+
+## Login
+
+### Request
+
+`GET /auth/login`
+
+### Response
+
+    -
 
 ## <span style="color:rgb(185 28 28);">Get Doctors</span>
 
@@ -120,243 +140,408 @@ SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pas
 
     {"message": "Dokter Tidak Ditemukan"}
 
-## Create another new Thing
+## Get All Instansi
 
 ### Request
 
-`POST /thing/`
-
-    curl -i -H 'Accept: application/json' -d 'name=Bar&junk=rubbish' http://localhost:7000/thing
+`GET /instansi`
 
 ### Response
 
-    HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 201 Created
-    Connection: close
-    Content-Type: application/json
-    Location: /thing/2
-    Content-Length: 35
+    [
+    {
+        "id": 1,
+        "nama": "Skilvul Hospital - Jakarta",
+        "alamat": "Alamat Rumah Sakit Jakarta",
+        "no_tlp": "123456789",
+        "area": "Jakarta",
+        "email": "skilvul_jakarta@example.com",
+        "image": "",
+        "createdAt": null,
+        "updatedAt": null
+    },
+    {
+        "id": 2,
+        "nama": "Skilvul Hospital - Surabaya",
+        "alamat": "Alamat Rumah Sakit Surabaya",
+        "no_tlp": "987654321",
+        "area": "Surabaya",
+        "email": "skilvul_surabaya@example.com",
+        "image": "",
+        "createdAt": null,
+        "updatedAt": null
+    },
+    {
+        "id": 3,
+        "nama": "Skilvul Hospital - Samarinda",
+        "alamat": "Alamat Rumah Sakit Samarinda",
+        "no_tlp": "111222333",
+        "area": "Samarinda",
+        "email": "skilvul_samarinda@example.com",
+        "image": "",
+        "createdAt": null,
+        "updatedAt": null
+    },
+    {
+        "id": 4,
+        "nama": "Skilvul Hospital - Medan",
+        "alamat": "Alamat Rumah Sakit Medan",
+        "no_tlp": "444555666",
+        "area": "Medan",
+        "email": "skilvul_medan@example.com",
+        "image": "",
+        "createdAt": null,
+        "updatedAt": null
+    }
+    ]
 
-    {"id":2,"name":"Bar","status":null}
-
-## Get list of Things again
+## Get Instansi by ID
 
 ### Request
 
-`GET /thing/`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/
+`GET /instansi/:id`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 74
+    {
+        "id": 1,
+        "nama": "Skilvul Hospital - Jakarta",
+        "alamat": "Alamat Rumah Sakit Jakarta",
+        "no_tlp": "123456789",
+        "area": "Jakarta",
+        "email": "skilvul_jakarta@example.com",
+        "image": "",
+        "createdAt": null,
+        "updatedAt": null
+    }
 
-    [{"id":1,"name":"Foo","status":"new"},{"id":2,"name":"Bar","status":null}]
-
-## Change a Thing's state
+## Get Instansi by Nama
 
 ### Request
 
-`PUT /thing/:id/status/changed`
-
-    curl -i -H 'Accept: application/json' -X PUT http://localhost:7000/thing/1/status/changed
+`get /instansi/search-by-name`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 40
+    null
 
-    {"id":1,"name":"Foo","status":"changed"}
-
-## Get changed Thing
+## Get Instansi by Alamat
 
 ### Request
 
-`GET /thing/id`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/1
+`GET /instansi/search-by-alamat`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 40
+    null
 
-    {"id":1,"name":"Foo","status":"changed"}
-
-## Change a Thing
+## Get Instansi by Area
 
 ### Request
 
-`PUT /thing/:id`
-
-    curl -i -H 'Accept: application/json' -X PUT -d 'name=Foo&status=changed2' http://localhost:7000/thing/1
+`GET /instansi/search-by-area`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 41
+    null
 
-    {"id":1,"name":"Foo","status":"changed2"}
-
-## Attempt to change a Thing using partial params
+## Add Instansi
 
 ### Request
 
-`PUT /thing/:id`
-
-    curl -i -H 'Accept: application/json' -X PUT -d 'status=changed3' http://localhost:7000/thing/1
+`POST /instansi`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:32 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 41
+    -
 
-    {"id":1,"name":"Foo","status":"changed3"}
-
-## Attempt to change a Thing using invalid params
+## Update Instansi
 
 ### Request
 
-`PUT /thing/:id`
-
-    curl -i -H 'Accept: application/json' -X PUT -d 'id=99&status=changed4' http://localhost:7000/thing/1
+`PUT /instansi/:id`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:32 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 41
+    -
 
-    {"id":1,"name":"Foo","status":"changed4"}
-
-## Change a Thing using the _method hack
+## Delete Instansi
 
 ### Request
 
-`POST /thing/:id?_method=POST`
-
-    curl -i -H 'Accept: application/json' -X POST -d 'name=Baz&_method=PUT' http://localhost:7000/thing/1
+`DELETE /instansi/:id`
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:32 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 41
+    -
 
-    {"id":1,"name":"Baz","status":"changed4"}
-
-## Change a Thing using the _method hack in the url
+## Get All user_kredensial
 
 ### Request
 
-`POST /thing/:id?_method=POST`
-
-    curl -i -H 'Accept: application/json' -X POST -d 'name=Qux' http://localhost:7000/thing/1?_method=PUT
+`GET /users`
 
 ### Response
 
-    HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:32 GMT
-    Status: 404 Not Found
-    Connection: close
-    Content-Type: text/html;charset=utf-8
-    Content-Length: 35
+    -
 
-    {"status":404,"reason":"Not found"}
-
-## Delete a Thing
+## Get user_kredensial by ID
 
 ### Request
 
-`DELETE /thing/id`
-
-    curl -i -H 'Accept: application/json' -X DELETE http://localhost:7000/thing/1/
+`GET /users/:id`
 
 ### Response
 
-    HTTP/1.1 204 No Content
-    Date: Thu, 24 Feb 2011 12:36:32 GMT
-    Status: 204 No Content
-    Connection: close
+    -
 
-
-## Try to delete same Thing again
+## Add user_kredensial
 
 ### Request
 
-`DELETE /thing/id`
-
-    curl -i -H 'Accept: application/json' -X DELETE http://localhost:7000/thing/1/
+`POST /users`
 
 ### Response
 
-    HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:32 GMT
-    Status: 404 Not Found
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 35
+    -
 
-    {"status":404,"reason":"Not found"}
-
-## Get deleted Thing
+## Update user_kredensial
 
 ### Request
 
-`GET /thing/1`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/1
+`PUT users/:id`
 
 ### Response
 
-    HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:33 GMT
-    Status: 404 Not Found
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 35
+    -
 
-    {"status":404,"reason":"Not found"}
-
-## Delete a Thing using the _method hack
+## Delete user_kredensial
 
 ### Request
 
-`DELETE /thing/id`
-
-    curl -i -H 'Accept: application/json' -X POST -d'_method=DELETE' http://localhost:7000/thing/2/
+`DELETE /users/:id`
 
 ### Response
 
-    HTTP/1.1 204 No Content
-    Date: Thu, 24 Feb 2011 12:36:33 GMT
-    Status: 204 No Content
-    Connection: close
+    -
+
+## Send Email
+
+### Request
+
+`POST /users/email-send`
+
+### Response
+
+    -
+
+## Change Password
+
+### Request
+
+`POST /users/change-password`
+
+### Response
+
+    -
+
+## Get All User
+
+### Request
+
+`GET /user`
+
+### Response
+
+    -
+
+## Get User by ID
+
+### Request
+
+`GET /user/:id`
+
+### Response
+
+    -
+
+## Add User
+
+### Request
+
+`POST /user`
+
+### Response
+
+    -
+
+## Edit User
+
+### Request
+
+`PUT /user/:id`
+
+### Response
+
+    -
+
+## Delete User by ID
+
+### Request
+
+`DELETE /user/:id`
+
+### Response
+
+    -
+
+## Get All Spesialis
+
+### Request
+
+`GET /spesialis`
+
+### Response
+
+    -
+
+## Get All Forum
+
+### Request
+
+`GET /forum`
+
+### Response
+
+    -
+
+## Get Forum by ID
+
+### Request
+
+`GET /forum/:id`
+
+### Response
+
+    -
+
+## Edit Forum by ID
+
+### Request
+
+`PUT /forum/:id`
+
+### Response
+
+    -
+
+## Get All Booking by User
+
+### Request
+
+`GET /bookings`
+
+### Response
+
+    -
+
+## Get All Booking by Doctor
+
+### Request
+
+`GET /bookings/doctor`
+
+### Response
+
+    -
+
+## Get Booking by ID
+
+### Request
+
+`GET /bookings/:id`
+
+### Response
+
+    -
+
+## Add Booking
+
+### Request
+
+`POST /bookings`
+
+### Response
+
+    -
+
+## Edit Booking
+
+### Request
+
+`PATCH /bookings/:id/edit`
+
+### Response
+
+    -
+
+## Change Booking Status
+
+### Request
+
+`PATCH /bookings/:id/toggle`
+
+### Response
+
+    -
+
+## Refund Booking
+
+### Request
+
+`DELETE /bookings/:id`
+
+### Response
+
+    -
+
+## Get All Uji Lab
+
+### Request
+
+`GET /ujilab`
+
+### Response
+
+    -
+
+## Get Uji Lab by ID
+
+### Request
+
+`GET /ujilab/:id`
+
+### Response
+
+    -
+
+## Add Uji Lab
+
+### Request
+
+`POST /ujilab`
+
+### Response
+
+    -
+
+## Edit Uji Lab
+
+### Request
+
+`POST /ujilab/:id/edit`
+
+### Response
+
+    -
+
