@@ -96,7 +96,9 @@ module.exports = {
   },
   emailSend: async (req, res) => {
     let data = await User_kredensial.findOne({
-      email: req.body.email
+      where:{
+        email: req.body.email
+      }
     });
     if (data) {
       res.status(200).json({
