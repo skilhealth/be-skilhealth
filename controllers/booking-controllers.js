@@ -170,7 +170,7 @@ module.exports = {
             const sisa = await Antrian.findAndCountAll({
                 where: {
                     id: {
-                        [Op.gt]: id
+                        [Op.gte]: id
                     },
                     status: false,
                     jadwal_id: antrian.Jadwal.id,
