@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Instansi.init({
+    kredensial_id: DataTypes.BIGINT,
     nama: DataTypes.STRING,
     alamat: DataTypes.STRING,
     no_tlp: DataTypes.STRING,

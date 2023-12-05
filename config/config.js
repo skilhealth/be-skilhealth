@@ -1,9 +1,9 @@
 module.exports = {
   development: {
-    username: "freedb_adminskilhealth",
-    password: "*fTN3&rmSw?JQcq",
-    database: "freedb_skilhealth",
-    host: "sql.freedb.tech",
+    username: "root",
+    password: "",
+    database: "skilhealth",
+    host: "127.0.0.1",
     dialect: "mysql",
   },
   test: {
@@ -14,10 +14,10 @@ module.exports = {
     dialect: "mysql",
   },
   production: {
-    username: "freedb_adminskilhealth",
-    password: "*fTN3&rmSw?JQcq",
-    database: "freedb_skilhealth",
-    host: "sql.freedb.tech",
+    username: "root",
+    password: "",
+    database: "skilhealth",
+    host: "127.0.0.1",
     dialect: "mysql",
   },
 };

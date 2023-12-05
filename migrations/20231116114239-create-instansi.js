@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      kredensial_id: {
+        type: Sequelize.INTEGER
+      },
       nama: {
         allowNull: false,
         type: Sequelize.STRING
