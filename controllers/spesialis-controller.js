@@ -4,7 +4,7 @@ module.exports = {
         try {
             const spesialis = await Spesialis.findAll()
             res.json({
-                message: "Successfully retrieved all forums",
+                message: "Successfully retrieved all spesialis",
                 data: spesialis,
             });
         } catch (error) {

@@ -6,6 +6,16 @@ SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pas
 
     https://be-skilhealth.up.railway.app/
 
+## Doctor Accounts
+
+### Dokter Andi
+email:      doctor1@gmail.com
+password:   doctor1
+
+### Dokter Joko
+email:      doctor8@gmail.com
+password:   doctor8
+
 ## Register
 
 ### Request
@@ -34,8 +44,8 @@ SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pas
 
 ### Response
 
-  "message": "Dokter Berhasil ditemukan",
-  "data": []
+    "message": "Dokter Berhasil ditemukan",
+    "data": []
 
 ## Get Doctors by ID
 
@@ -353,7 +363,62 @@ SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pas
 
 ### Response
 
-    -
+    [
+    {
+        "id": 1,
+        "nama": "Virgiawan Sanria",
+        "tgl_lahir": "2003-09-15T00:00:00.000Z",
+        "jenis_kelamin": "laki-laki",
+        "no_tlp": "08810246567",
+        "kredensial_id": 3,
+        "images": "/images/users/user.png"
+    },
+    {
+        "id": 2,
+        "nama": "Orang Misterius",
+        "tgl_lahir": "2006-06-12T00:00:00.000Z",
+        "jenis_kelamin": "laki-laki",
+        "no_tlp": "084621876238",
+        "kredensial_id": 4,
+        "images": "/images/users/user.png"
+    },
+    {
+        "id": 3,
+        "nama": "SJW Teatan",
+        "tgl_lahir": "2003-07-08T00:00:00.000Z",
+        "jenis_kelamin": "laki-laki",
+        "no_tlp": "0896828782787",
+        "kredensial_id": 5,
+        "images": "/images/users/user.png"
+    },
+    {
+        "id": 4,
+        "nama": "Kaiden Artificial Intelligence",
+        "tgl_lahir": "2014-06-17T00:00:00.000Z",
+        "jenis_kelamin": "laki-laki",
+        "no_tlp": "087298826",
+        "kredensial_id": 6,
+        "images": "/images/users/user.png"
+    },
+    {
+        "id": 5,
+        "nama": "Gabriel",
+        "tgl_lahir": "2000-05-02T00:00:00.000Z",
+        "jenis_kelamin": "laki-laki",
+        "no_tlp": "0870802929878",
+        "kredensial_id": 7,
+        "images": "/images/users/user.png"
+    },
+    {
+        "id": 6,
+        "nama": "Ariel",
+        "tgl_lahir": "2023-12-04T00:00:00.000Z",
+        "jenis_kelamin": "laki-laki",
+        "no_tlp": "085389899996",
+        "kredensial_id": 8,
+        "images": "/images/users/user.png"
+    }
+    ]
 
 ## Get User by ID
 
@@ -363,7 +428,15 @@ SKILHEALTH adalah Aplikasi Kesehatan Online yang memberikan pelayanan kepada pas
 
 ### Response
 
-    -
+    {
+    "id": 1,
+    "nama": "Virgiawan Sanria",
+    "tgl_lahir": "2003-09-15T00:00:00.000Z",
+    "jenis_kelamin": "laki-laki",
+    "no_tlp": "08810246567",
+    "kredensial_id": 3,
+    "images": "/images/users/user.png"
+    }
 
 ## Add User
 
