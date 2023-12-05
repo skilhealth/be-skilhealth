@@ -515,8 +515,7 @@ password:   doctor8
 
 ### Response
 
-    {
-    "message": "Successfully retrieved all forums",
+    {"message": "Successfully retrieved all forums",
     "data": [
         {
         "id": 5,
