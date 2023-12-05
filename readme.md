@@ -476,7 +476,36 @@ password:   doctor8
 
 ### Response
 
-    -
+    "data": [
+    {
+      "id": 1,
+      "nama": "Dokter Anak",
+      "keterangan": "Spesialis dalam perawatan kesehatan anak-anak",
+      "createdAt": null,
+      "updatedAt": null
+    },
+    {
+      "id": 2,
+      "nama": "Ortopedi",
+      "keterangan": "Spesialis dalam bidang penyakit tulang dan muskuloskeletal",
+      "createdAt": null,
+      "updatedAt": null
+    },
+    {
+      "id": 3,
+      "nama": "Psikiatri",
+      "keterangan": "Spesialis dalam pengobatan gangguan mental dan emosional",
+      "createdAt": null,
+      "updatedAt": null
+    },
+    {
+      "id": 4,
+      "nama": "Penyakit Dalam",
+      "keterangan": "Spesialis dalam penyakit-penyakit internal tubuh manusia",
+      "createdAt": null,
+      "updatedAt": null
+    }
+  ]
 
 ## Get All Forum
 
@@ -486,13 +515,87 @@ password:   doctor8
 
 ### Response
 
-    -
+    {
+  "message": "Successfully retrieved all forums",
+  "data": [
+    {
+      "id": 5,
+      "user_id": 3,
+      "dokter_id": null,
+      "judul": "Sering pingsan dan telapak tangan berair apakah ciri-ciri jantung lemah?",
+      "pertanyaan": "Dok apakah orang yang suka pingsan dan sering keringetan di telapak tangannya itu dia punya sakit jantung ya dok? tergolong ciri-ciri jantung lemah gak sih itu dokter? mohon pencerahannya. trims",
+      "jawaban": null,
+      "status": false,
+      "createdAt": "2023-12-04T00:08:40.000Z",
+      "updatedAt": "2023-12-04T00:08:40.000Z",
+      "Dokter": null,
+      "User": {
+        "id": 3,
+        "nama": "SJW Teatan"
+      }
+    },
+    {
+      "id": 4,
+      "user_id": 5,
+      "dokter_id": null,
+      "judul": "Obat disfungsi ereksi yang aman bagi jantung",
+      "pertanyaan": "Hi dokter, Dok, saya mau tanya, Saya adalah pria berusia 30 tahun. Saya sebelumnya menderita penyakit jantung. saya khawatir dengan hal ini soalnya saya juga punya kelemahan disfungsi ereksi. Saya ingin menanyakan obat disfungsi ereksi yang aman bagi jantung?",
+      "jawaban": null,
+      "status": false,
+      "createdAt": "2023-12-04T00:06:43.000Z",
+      "updatedAt": "2023-12-04T00:06:43.000Z",
+      "Dokter": null,
+      "User": {
+        "id": 5,
+        "nama": "Gabriel"
+      }
+    },
+    {
+      "id": 3,
+      "user_id": 4,
+      "dokter_id": null,
+      "judul": "Kelopak mata bagian bawah sebelah kiri kedutan",
+      "pertanyaan": "Kelopak mata bagian bawah sebelah kiri kedutan.",
+      "jawaban": null,
+      "status": false,
+      "createdAt": "2023-12-04T00:03:44.000Z",
+      "updatedAt": "2023-12-04T00:03:44.000Z",
+      "Dokter": null,
+      "User": {
+        "id": 4,
+        "nama": "Kaiden Artificial Intelligence"
+      }
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "dokter_id": 1,
+      "judul": "Kepala bagian kiri sakit,dan belakang mata kiri ikutannya nyeri",
+      "pertanyaan": "Hallo doc mau nanya kenapa yak setiap pagi kepala kiri saya sakit,trs diiringin dengan Mata bagian belakang kiri ikutan nyeri? Terima kasih",
+      "jawaban": "Hallo juga,Mungkin alasannya dibalik kepala bagian kiri anda nyeri disertai belakang mata nyeri itu karena anda kurangnya tidur atau perubahan pola tidur anda,Guna membantu mengurangi rasa nyeri pada kepala bagian kiri, kamu bisa mencoba beberapa cara perawatan sederhana rumahan, misalnya: \n\nMengompres dingin atau hangat pada bagian kepala yang nyeri.\nMandi dengan air hangat.\nIstirahat cukup, setidaknya 7 sampai 9 jam pada malam hari.\nMendengarkan musik yang lembut dan menenangkan. \nJika memang perlu, kamu bisa mengonsumsi obat yang dijual bebas di apotek, misalnya paracetamol, aspirin, dan ibuprofen. ",
+      "status": true,
+      "createdAt": "2023-12-03T23:57:43.000Z",
+      "updatedAt": "2023-12-04T00:10:19.000Z",
+      "Dokter": {
+        "id": 1,
+        "nama": "Dr. Andi Susanto",
+        "Spesiali": {
+          "nama": "Ortopedi"
+        }
+      },
+      "User": {
+        "id": 1,
+        "nama": "Virgiawan Sanria"
+      }
+    }
+  ]
+}
 
-## Get Forum by ID
+## Add Forum
 
 ### Request
 
-`GET /forum/:id`
+`POST /forum`
 
 ### Response
 
