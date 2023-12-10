@@ -21,6 +21,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      kredensial_id: {
+        allowNull: false,
+        type: Sequelize.BIGINT
+      },
       area: {
         allowNull: false,
         type: Sequelize.STRING

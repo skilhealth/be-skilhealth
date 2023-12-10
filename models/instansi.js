@@ -11,10 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Instansi.hasMany(models.Dokter, {foreignKey: 'instansi_id'})
+      Instansi.hasMany(models.Ambulance, {foreignKey: 'instansi_id'})
     }
   }
   Instansi.init({
     nama: DataTypes.STRING,
+    kredensial_id: DataTypes.BIGINT,
     alamat: DataTypes.STRING,
     no_tlp: DataTypes.STRING,
     area: DataTypes.STRING,
