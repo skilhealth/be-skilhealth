@@ -54,6 +54,8 @@ module.exports = {
         no_tlp,
         alamat
       } = req.body;
+      console.log(userId)
+      console.log(req.body)
 
       let user = await User.findByPk(userId);
 
