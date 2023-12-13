@@ -51,19 +51,9 @@ module.exports = {
       const {
         nama,
         tgl_lahir,
-        jenis_kelamin,
         no_tlp,
-        kredensial_id,
         alamat
       } = req.body;
-
-      // let images; // Variabel untuk menyimpan path gambar baru
-
-      // // Periksa jika ada file gambar baru di form-data
-      // if (req.file) {
-      //   images = req.file.path; // Ambil path gambar baru dari form-data
-      // }
-
 
       let user = await User.findByPk(userId);
 
@@ -71,22 +61,17 @@ module.exports = {
         return res.status(404).json({ message: 'User tidak ditemukan' });
       }
 
-      // Perbarui nilai-nilai atribut User sesuai dengan data baru
-      user.nama = nama || user.nama;
-      user.tgl_lahir = tgl_lahir || user.tgl_lahir;
-      user.jenis_kelamin = jenis_kelamin || user.jenis_kelamin;
-      user.no_tlp = no_tlp || user.no_tlp;
-      user.kredensial_id = kredensial_id || user.kredensial_id;
-      user.alamat = alamat || user.alamat;
-
-      // Jika ada path gambar baru, update nilai images
-      // if (images) {
-      //   user.images = images;
-      // }
-
-      // Simpan perubahan ke database
-      await user.save();
-
+      await User.update({
+        nama:nama,
+        tgl_lahir:tgl_lahir,
+        no_tlp:no_tlp,
+        alamat:alamat
+      },
+      {
+        where:{
+          id:userId
+        }
+      });
       res.status(200).json({message:"Berhasil Edit Profile"}); // Beri respons dengan user yang telah diperbarui
     } catch (err) {
       res.status(500).json({ message: err.message });
