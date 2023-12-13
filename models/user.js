@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     no_tlp: DataTypes.STRING,
     kredensial_id: DataTypes.BIGINT,
-    images: DataTypes.STRING
+    images: DataTypes.STRING,
+    alamat:DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'User',
