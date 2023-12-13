@@ -67,10 +67,14 @@ module.exports = {
                     role: user.role,
                     nama: user.Dokter.nama,
                     status: user.Dokter.status,
-                    rs: user.Dokter.instansi_id,
-                    sp: user.Dokter.spesialis_id,
-                    tlp: user.Dokter.no_tlp,
-                    des: user.Dokter.deskripsi
+                    instansi_id: user.Dokter.instansi_id,
+                    spesialis_id: user.Dokter.spesialis_id,
+                    no_tlp: user.Dokter.no_tlp,
+                    deskripsi: user.Dokter.deskripsi,
+                    images:user.Dokter.images,
+                    pendidikan:user.Dokter.pendidikan,
+                    pengalaman:user.Dokter.pengalaman,
+                    skd:user.Dokter.skd
                 }
             } else {
                 dataUser = {
@@ -79,7 +83,8 @@ module.exports = {
                     tgl_lahir: user.User.tgl_lahir,
                     jenis_kelamin: user.User.jenis_kelamin,
                     no_tlp: user.User.no_tlp,
-                    images: user.images,
+                    images: user.User.images,
+                    alamat:user.User.alamat,
                     email: user.email,
                     role: user.role
                 }
