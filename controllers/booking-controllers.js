@@ -132,7 +132,7 @@ module.exports = {
                     {
                     model:User,
                     required:true,
-                    attributes:['id','nama']
+                    attributes:['id','nama','no_tlp','alamat']
                     }, {
                     model: Dokter,
                     required: true,
