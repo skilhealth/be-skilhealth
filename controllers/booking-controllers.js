@@ -93,7 +93,7 @@ module.exports = {
                 include: [{
                     model: User,
                     required: true,
-                    attributes: ['id', 'nama', 'images']
+                    attributes: ['id', 'nama', 'images','no_tlp','alamat']
                 },
                 {
                     model: Jadwal,
