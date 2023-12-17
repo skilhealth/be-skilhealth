@@ -1,4 +1,5 @@
 const { Respon } = require("../models")
+const { Op } = require("sequelize");
 
 module.exports = {
     getAllRespon: async (req, res) => {
@@ -41,11 +42,13 @@ module.exports = {
         try {
             const response = await Respon.findAll({
                 where: {
-                    instansi_id: req.query.id,
-                    ambulan_id: null
+                    [Op.and]: [
+                        { instansi_id: req.query.id },
+                        { ambulan_id: null }
+                    ],
                 },
             });
-            if (!response)
+            if (response.length === 0)
                 return res.json({
                     message: "Request tidak ditemukan"
                 })
@@ -85,13 +88,13 @@ module.exports = {
     giveRespon: async (req, res) => {
         try {
             const data = req.body
-            await Respon.update({ambulan_id:data.ambulan_id},{
-                where :{
-                    id:data.id
+            await Respon.update({ ambulan_id: data.ambulan_id }, {
+                where: {
+                    id: data.id
                 }
             })
             res.json({
-                message:"Request Berhasil diberi Respon"
+                message: "Request Berhasil diberi Respon"
             })
         } catch (err) {
             console.error(err)

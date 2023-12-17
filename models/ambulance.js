@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     tingkat: DataTypes.ENUM('biasa', 'darurat'),
     paramedis: DataTypes.TEXT,
     peralatan: DataTypes.TEXT,
-    instansi_id: DataTypes.INTEGER
+    instansi_id: DataTypes.INTEGER,
+    image:DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Ambulance',
