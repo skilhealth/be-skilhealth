@@ -10,6 +10,8 @@ const userKredensial = require('./user-kredensial-route');
 const authRoute = require('./auth.route');
 const dokterRoute = require('./dokter-route')
 const spesialisRoute = require('./spesialis-route')
+const ambulanceRoute = require('./ambulance-routes')
+const responRoute = require('./respon-route')
 
 const tokenVerify = require("../middleware/auth")
 
@@ -22,14 +24,16 @@ route.get("/", (req, res) => {
 
 route.use("/forum", forumRoute)
 route.use("/doctors", doktorRoutes)
-route.use("/bookings",tokenVerify, bookingRoutes)
-route.use("/ujilab",tokenVerify, ujilabRoutes)
+route.use("/bookings", tokenVerify, bookingRoutes)
+route.use("/ujilab", tokenVerify, ujilabRoutes)
 route.use("/instansi", instansiRoute)
 route.use("/user", userRoute)
 route.use("/auth", authRoute)
 route.use("/users", userKredensial)
 route.use("/dokter", dokterRoute)
 route.use("/spesialis", spesialisRoute)
+route.use("/ambulances", ambulanceRoute)
+route.use("/respon", responRoute)
 
 
 module.exports = route

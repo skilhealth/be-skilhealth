@@ -1,4 +1,4 @@
-const { User_kredensial, User, Dokter } = require('../models')
+const { User_kredensial, User, Dokter,Instansi } = require('../models')
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken');
 const dokter = require('../models/dokter');
@@ -49,6 +49,8 @@ module.exports = {
                     model: User,
                 }, {
                     model: Dokter,
+                },{
+                    model:Instansi
                 }],
                 where: {
                     email: req.body.email
@@ -71,10 +73,18 @@ module.exports = {
                     spesialis_id: user.Dokter.spesialis_id,
                     no_tlp: user.Dokter.no_tlp,
                     deskripsi: user.Dokter.deskripsi,
-                    images:user.Dokter.images,
-                    pendidikan:user.Dokter.pendidikan,
-                    pengalaman:user.Dokter.pengalaman,
-                    skd:user.Dokter.skd
+                    images: user.Dokter.images,
+                    pendidikan: user.Dokter.pendidikan,
+                    pengalaman: user.Dokter.pengalaman,
+                    skd: user.Dokter.skd
+                }
+            } else if (user.role === "instansi") {
+                dataUser = {
+                    id: user.Instansi.id,
+                    nama: user.Instansi.nama,
+                    alamat: user.Instansi.alamat,
+                    email: user.email,
+                    role: user.role
                 }
             } else {
                 dataUser = {
@@ -84,7 +94,7 @@ module.exports = {
                     jenis_kelamin: user.User.jenis_kelamin,
                     no_tlp: user.User.no_tlp,
                     images: user.User.images,
-                    alamat:user.User.alamat,
+                    alamat: user.User.alamat,
                     email: user.email,
                     role: user.role
                 }

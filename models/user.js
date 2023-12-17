@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Antrian, { foreignKey: 'user_id' });
       User.hasMany(models.Forum, {foreignKey: 'user_id'});
       User.hasMany(models.ujilab, {foreignKey: 'user_id'});
+      User.hasOne(models.Respon, {foreignKey: 'user_id'});
     }
   }
   User.init({

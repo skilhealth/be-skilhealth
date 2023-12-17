@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User_kredensial.hasOne(models.User, { foreignKey: 'kredensial_id'});
       User_kredensial.hasOne(models.Dokter, { foreignKey: 'kredensial_id'});
+      User_kredensial.hasOne(models.Instansi, { foreignKey: 'kredensial_id'});
     }
   }
   User_kredensial.init({

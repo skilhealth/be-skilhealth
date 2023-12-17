@@ -34,7 +34,6 @@ module.exports = {
     const hashPassword = await argon2.hash(password);
     try {
       await User_kredensial.create({
-        username: username,
         email: email,
         password: hashPassword,
         role: role
