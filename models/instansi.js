@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Instansi.hasMany(models.Dokter, {foreignKey: 'instansi_id'})
+      Instansi.hasMany(models.Ambulance,{foreignKey:'instansi_id'})
+      Instansi.hasOne(models.Respon, { foreignKey: 'instansi_id'});
+      Instansi.belongsTo(models.User_kredensial, { foreignKey: 'kredensial_id', onDelete: 'CASCADE' });
     }
   }
   Instansi.init({
@@ -19,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     no_tlp: DataTypes.STRING,
     area: DataTypes.STRING,
     email: DataTypes.STRING,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    kredensial_id:DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Instansi',
